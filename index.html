@@ -812,7 +812,6 @@ body.modal-open{overflow:hidden}
     </div>
     <div class="gate-hint"><span class="bn">খুলতে স্পর্শ করুন</span>Tap to open</div>
     <div class="gate-wed" id="gateWed" aria-label="Wedding date"></div>
-    <div class="gate-bottom" id="gateDate"></div>
   </div>
 </div>
 
@@ -1608,7 +1607,6 @@ addEventListener('resize', layoutDoorArt);
 /* ---------- bind content ---------- */
 document.title = `${W.bride} & ${W.groom} — Wedding Invitation`;
 $('#navMono').innerHTML = `${esc(W.bride[0])}<b>&amp;</b>${esc(W.groom[0])}`;
-$('#gateDate').textContent = EV.map(e => e.dateShort).join('  ·  ');
 (() => { const e = EV.find(x => x.key === 'wedding') || EV[0], [d, m, y] = e.dateShort.split('.');
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
   $('#gateWed').innerHTML = `<small><span class="bn">${bnDay}</span> ✦ ${esc(e.day)}</small><b>${esc(d)}<i>·</i>${esc(m)}<i>·</i>${esc(y)}</b>`; })();
