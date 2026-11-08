@@ -837,7 +837,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 footer{background:var(--deep);color:var(--gold-3);text-align:center;padding:100px 0 60px;position:relative;overflow:hidden}
 footer .big-mono{width:140px;height:140px;margin:0 auto;border-radius:50%;border:1px solid rgba(214,180,117,.5);display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:46px;position:relative}
 footer .big-mono::after{content:"";position:absolute;inset:8px;border-radius:50%;border:1px solid rgba(214,180,117,.25)}
-footer .fn{font-family:var(--serif);font-weight:300;font-size:clamp(46px,8vw,86px);color:#fff;margin-top:30px;line-height:1}
+footer .fn{font-family:var(--serif);font-weight:300;font-size:clamp(46px,8vw,86px);color:#fff;margin-top:0;line-height:1}
 footer .fn em{font-family:var(--script);font-style:normal;color:var(--gold-2);font-size:.6em;margin:0 .15em}
 footer .fd{margin-top:16px;letter-spacing:.34em;font-size:13px;color:var(--gold-2)}
 .hash{margin-top:34px;display:inline-flex;align-items:center;gap:12px;padding:13px 22px;border-radius:999px;border:1px solid rgba(214,180,117,.4);font-family:var(--serif);font-style:italic;font-size:20px;transition:background .3s}
@@ -1383,8 +1383,6 @@ body.modal-open{overflow:hidden}
   <svg class="bot l" viewBox="0 0 200 200" data-branch="4"></svg>
   <svg class="bot r" viewBox="0 0 200 200" data-branch="5"></svg>
   <div class="container" style="position:relative">
-    <div class="praj rv"><svg aria-hidden="true"><use href="#prajapati"/></svg></div>
-    <div class="big-mono rv" id="footMono"></div>
     <div class="fn rv" id="footNames"></div>
     <div class="fbn rv" id="footBn"></div>
     <div class="fd rv" id="footDate"></div>
@@ -2123,7 +2121,7 @@ $('#galleryGrid').addEventListener('click', e => {
 $('#lightbox').addEventListener('click', () => $('#lightbox').classList.remove('on'));
 
 /* footer */
-$('#footMono').innerHTML = monoHTML;
+
 $('#footNames').innerHTML = `${esc(W.groom)}<em>&amp;</em>${esc(W.bride)}`;
 $('#footBn').textContent = `${W.groomBn} ও ${W.brideBn}`;
 $('#footDate').textContent = EV.map(e => e.dateShort).join('  ·  ');
