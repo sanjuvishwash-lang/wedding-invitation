@@ -323,7 +323,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .v5-of{display:flex;align-items:center;gap:14px;margin-top:26px;font-family:var(--sans);font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:#a77a35}
 .v5-of i{width:46px;height:1px;background:#c99b52}
 .v5-of i:first-child{display:none}
-.v5-names{font-family:var(--script);font-weight:600;color:var(--wine);font-size:clamp(64px,7.6vw,118px);line-height:.92;margin:8px 0 0;text-shadow:0 6px 24px rgba(94,13,27,.12)}
+.v5-names{font-family:var(--script);font-weight:600;color:var(--wine);font-size:clamp(64px,7.6vw,118px);line-height:.92;margin:22px 0 0;text-shadow:0 6px 24px rgba(94,13,27,.12)}
 .v5-names span{display:block}
 .v5-names .n2{padding-left:.9em}
 .v5-names em{display:flex;align-items:center;gap:14px;font-style:normal;font-weight:500;font-size:.34em;color:#b0823a;margin:.12em 0 .02em .35em;line-height:1}
@@ -1157,9 +1157,7 @@ body.modal-open{overflow:hidden}
     <div class="container v5">
       <div class="v5-text">
         <div class="v5-eye r4" style="--d:.1s"><svg class="v5-gan" aria-hidden="true"><use href="#ganesh"/></svg><span class="bn">শুভ বিবাহ</span></div>
-        <div class="v5-of r4" style="--d:.18s"><i></i>The Wedding Of<i></i></div>
-        <h1 class="v5-names r4" style="--d:.25s"><span class="n1" id="nmG"></span><em><i></i>&amp;<i></i></em><span class="n2" id="nmB"></span></h1>
-        <div class="v5-bn r4" style="--d:.4s" id="nmBn"></div>
+        <h1 class="v5-names r4" style="--d:.25s"><span class="n1" id="nmG"></span><em><i></i>weds<i></i></em><span class="n2" id="nmB"></span></h1>
         <p class="v5-inv r4" style="--d:.5s" id="tagline"></p>
         <div class="v5-when r4" style="--d:.6s" id="heroDate"></div>
         <div class="hero-cta r4" style="--d:.8s">
@@ -1875,7 +1873,6 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
   const e = EV.find(x => x.key === 'wedding') || EV[0], [d, , y] = e.dateShort.split('.');
   const mon = new Date(e.start).toLocaleString('en-GB', {month:'long', timeZone:'Asia/Kolkata'});
   $('#nmG').textContent = W.groom; $('#nmB').textContent = W.bride;
-  $('#nmBn').textContent = `${W.groomBn} ও ${W.brideBn}`;
   $('#tagline').textContent = 'Together with their families, the couple warmly invite you to celebrate the joy of their wedding day.';
   $('#heroDate').innerHTML = `<b>${esc(d)}</b><span><strong>${esc(mon)} ${esc(y)}</strong><em>${esc(e.day)} · ${esc(e.time)}</em></span>`;
   // couple
