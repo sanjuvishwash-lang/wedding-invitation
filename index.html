@@ -1037,7 +1037,7 @@ const W = {
   groom: "Sanju",
   brideBn: "মৌসুমী",                    // names in Bengali script
   groomBn: "সঞ্জু",
-  tagline: "invite you to celebrate their wedding",
+  tagline: "you are cordially invited",
   taglineBn: "শুভ পরিণয়ে আপনার সাদর আমন্ত্রণ",
   hashtag: "#MousumiWedsSanju",
   city: "Your City, Country",
@@ -1592,7 +1592,7 @@ $('#navMono').innerHTML = `${esc(W.bride[0])}<b>&amp;</b>${esc(W.groom[0])}`;
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
   $('#gateWed').innerHTML = `<small><span class="bn">${bnDay}</span> ✦ ${esc(e.day)}</small><b>${esc(d)}<i>·</i>${esc(m)}<i>·</i>${esc(y)}</b>`; })();
 
-$('#heroNames').innerHTML = `<span class="w"><span>${esc(W.bride)}</span></span><span class="amp">&amp;</span><span class="w"><span>${esc(W.groom)}</span></span>`;
+$('#heroNames').innerHTML = `<span class="w"><span>${esc(W.bride)}</span></span><span class="amp">weds</span><span class="w"><span>${esc(W.groom)}</span></span>`;
 $('#tagline').textContent = W.tagline;
 $('#tagBn').textContent = W.taglineBn || '';
 (() => { const e = EV[0], [d, , y] = e.dateShort.split('.');
