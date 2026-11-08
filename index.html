@@ -556,6 +556,31 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .cal-f{margin-top:10px;padding-top:9px;border-top:1px dashed rgba(176,130,58,.45);font-family:var(--sans);font-size:14px;letter-spacing:.08em;color:#7a5a3e}
 @media (max-width:980px){.v5-cal{padding:14px 10px 12px}.cal-row{grid-template-columns:repeat(7,minmax(38px,1fr))}.wkd b{width:32px;height:32px;font-size:17px}.wkd.main b{width:48px;height:48px;font-size:25px}.wkd.main::before{width:64px;height:64px;margin-left:-32px;top:15px}.wkd em{font-size:12.5px}.cal-h{font-size:17px}}
 
+
+/* শুভ বিবাহ lockup v2 */
+.v5-med{width:118px!important;height:118px!important;background:none!important;box-shadow:none!important}
+.v5-med::after{display:none}
+.v5-mand{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.v5-mand path{fill:none;stroke:#c99b52;stroke-width:1}
+.v5-mand .pf{fill:rgba(240,215,160,.35);stroke:#b0823a}
+.v5-mand .ring-o{animation:spin2 50s linear infinite}
+.v5-mand .ring-i{animation:spin2 70s linear infinite reverse}
+.v5-mand .dots{fill:none;stroke:#c99b52;stroke-width:1.4;stroke-dasharray:.1 5.4;stroke-linecap:round}
+.v5-mand .disc{fill:url(#v5Disc);fill:#6e1428}
+.v5-mand .rim{fill:none;stroke:#d6b475;stroke-width:1.6}
+.v5-mand .rim2{fill:none;stroke:rgba(240,215,160,.55);stroke-width:.6;stroke-dasharray:2 2}
+.v5-med .v5-gan{position:relative;width:34px!important;height:38px!important;color:#f3dc9c!important;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.v5-lock{position:relative;border-left:0!important;padding-left:6px!important;align-items:center;gap:0!important}
+.v5-swag{width:200px;height:24px;margin-bottom:2px;overflow:visible}
+.v5-swag .cord{stroke:#c9a04c;stroke-width:.8;fill:none}
+.v5-lock .bn{font-size:clamp(34px,3.2vw,44px)!important}
+.v5-swash{width:200px;height:16px;margin:2px 0 4px;overflow:visible}
+.v5-swash path{fill:none;stroke:#b0823a;stroke-width:1.2;stroke-linecap:round}
+.v5-swash .f{fill:#b0823a;stroke:none}
+.v5-lock small{gap:0!important;letter-spacing:.5em!important;padding-left:.5em}
+.v5-lock small i{display:none}
+@media (max-width:980px){.v5-eye{gap:22px!important}.v5-med{width:104px!important;height:104px!important}.v5-lock{padding-left:0!important}}
+
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
 .ph-empty{
@@ -1210,8 +1235,13 @@ body.modal-open{overflow:hidden}
     <div class="container v5">
       <div class="v5-text">
         <div class="v5-eye r4" style="--d:.1s">
-          <span class="v5-med" aria-hidden="true"><svg class="v5-gan"><use href="#ganesh"/></svg></span>
-          <span class="v5-lock"><span class="bn">শুভ বিবাহ</span><small><i></i>Shubho Bibaho<i></i></small></span>
+          <span class="v5-med" aria-hidden="true"><svg class="v5-mand" id="v5Mand" viewBox="-62 -62 124 124"></svg><svg class="v5-gan"><use href="#ganesh"/></svg></span>
+          <span class="v5-lock">
+            <svg class="v5-swag" id="v5Swag" viewBox="0 0 220 26" aria-hidden="true"></svg>
+            <span class="bn">শুভ বিবাহ</span>
+            <svg class="v5-swash" viewBox="0 0 220 18" aria-hidden="true"><path d="M8 9C40 9 58 3 84 6C96 7.5 101 10 106 9M212 9C180 9 162 3 136 6C124 7.5 119 10 114 9"/><path d="M110 2C113 6 113 12 110 16C107 12 107 6 110 2Z" class="f"/><circle cx="100" cy="9" r="1.6" class="f"/><circle cx="120" cy="9" r="1.6" class="f"/><circle cx="8" cy="9" r="1.8" class="f"/><circle cx="212" cy="9" r="1.8" class="f"/></svg>
+            <small>Shubho Bibaho</small>
+          </span>
         </div>
         <h1 class="v5-names r4" style="--d:.25s"><span class="n1" id="nmG"></span><em><i></i>weds<i></i></em><span class="n2" id="nmB"></span></h1>
         <p class="v5-inv r4" style="--d:.5s" id="tagline"></p>
@@ -1941,6 +1971,19 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
     let bd = ''; for (let y = 3, j = 0; y < len; y += 4.4, j++) bd += `<circle cx="${x}" cy="${y.toFixed(1)}" r="${j % 2 ? 1.75 : 2.1}" fill="${j % 2 ? '#f59e0b' : '#f7c948'}"/>`;
     st += `<g class="v5-s" style="transform-origin:${x}px 0;animation-delay:${(-i * .7).toFixed(1)}s"><path d="M${x} 0V${len}" stroke="#c9a04c" stroke-width=".35"/>${bd}<path d="M${x} ${len + 1}l-1 3.4M${x} ${len + 1}l1 3.4" stroke="#e34b5f" stroke-width=".7"/></g>`; });
   $('#v5Str').innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMin slice">${st}</svg>`;
+  // lotus mandala behind the Ganesh + marigold swag over শুভ বিবাহ
+  (() => { const m = $('#v5Mand'); if (m){ let o = '<g class="ring-o">';
+      for (let i = 0; i < 16; i++) o += `<path transform="rotate(${i * 22.5})" d="M0 -40C7 -46 7 -54 0 -60C-7 -54 -7 -46 0 -40Z"/>`;
+      o += '</g><g class="ring-i">';
+      for (let i = 0; i < 8; i++) o += `<path transform="rotate(${i * 45 + 22.5})" d="M0 -29C9 -35 9 -45 0 -50C-9 -45 -9 -35 0 -29Z" class="pf"/>`;
+      o += '</g><circle r="56" class="dots"/><circle r="30" class="disc"/><circle r="30" class="rim"/><circle r="26" class="rim2"/>';
+      m.innerHTML = o; }
+    const g = $('#v5Swag'); if (g){ let o = '<path d="M2 3H218" class="cord"/>';
+      [[2, 74], [74, 146], [146, 218]].forEach(([x0, x1], k) => { for (let t = 0, j = 0; t <= 1.0001; t += 1 / 9, j++){
+        const x = x0 + (x1 - x0) * t, y = 3 + 4 * (k === 1 ? 13 : 10) * t * (1 - t);
+        o += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${j % 2 ? 2.6 : 3.1}" fill="${j % 2 ? '#f59e0b' : '#f7c948'}"/>`; } });
+      [74, 146].forEach(x => o += `<path d="M${x} 3V18" class="cord"/><circle cx="${x}" cy="12" r="2.2" fill="#e8590c"/><path d="M${x} 20l-2 5M${x} 20l2 5" stroke="#c8102e" stroke-width="1.2"/><path d="M${x - 1} 2c-6 1-10 5-11 10c5-1 9-5 11-10zM${x + 1} 2c6 1 10 5 11 10c-5-1-9-5-11-10z" fill="#4c7a2f"/>`);
+      g.innerHTML = o; } })();
   // gold line-art florals
   const f = n => n.toFixed(1), V = (a, r) => [Math.cos(a) * r, Math.sin(a) * r], D = Math.PI / 180;
   let k = 0; const P = (d, w) => `<path pathLength="1" style="--k:${(k++ * .035).toFixed(2)}s" ${w ? `stroke-width="${w}"` : ''} d="${d}"/>`;
