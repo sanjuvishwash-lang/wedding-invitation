@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#5e0d1b">
-<title>Mousumi &amp; Sanju — Wedding Invitation</title>
+<title>Sanju &amp; Mousumi — Wedding Invitation</title>
 <meta name="description" content="You are cordially invited to our wedding.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1039,7 +1039,7 @@ const W = {
   groomBn: "সঞ্জু",
   tagline: "you are cordially invited",
   taglineBn: "শুভ পরিণয়ে আপনার সাদর আমন্ত্রণ",
-  hashtag: "#MousumiWedsSanju",
+  hashtag: "#SanjuWedsMousumi",
   city: "Your City, Country",
 
   // Rabindranath Tagore — “Anonto Prem” (Unending Love)
@@ -1096,8 +1096,8 @@ const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const guest = new URLSearchParams(location.search).get('to');
 const EV = W.events;
-const mono = `${W.bride[0]}${W.groom[0]}`;
-const monoHTML = `<span style="white-space:nowrap">${esc(W.bride[0])}<span style="font-family:var(--script);color:var(--gold-2);font-size:.7em;margin:0 .06em">&amp;</span>${esc(W.groom[0])}</span>`;
+const mono = `${W.groom[0]}${W.bride[0]}`;
+const monoHTML = `<span style="white-space:nowrap">${esc(W.groom[0])}<span style="font-family:var(--script);color:var(--gold-2);font-size:.7em;margin:0 .06em">&amp;</span>${esc(W.bride[0])}</span>`;
 const shortDay = e => e.dateShort.slice(0,5).replace('.', ' · ');
 const monthOf = e => new Date(e.start).toLocaleString('en-GB',{month:'short',timeZone:'UTC'});
 
@@ -1458,7 +1458,7 @@ async function mascot3D(host){
 /* ---------- image mascot (e.g. a Pixar-style couple illustration) ---------- */
 function mascotImage(host, src, onFail){
   const img = new Image();
-  img.alt = `${W.bride} and ${W.groom} — illustrated Bengali bride and groom`;
+  img.alt = `${W.groom} and ${W.bride} — illustrated Bengali bride and groom`;
   img.decoding = 'async';
   img.onerror = onFail;
   img.onload = () => {
@@ -1586,13 +1586,13 @@ addEventListener('resize', layoutDoorArt);
 (document.fonts ? document.fonts.ready : Promise.resolve()).then(layoutDoorArt);
 
 /* ---------- bind content ---------- */
-document.title = `${W.bride} & ${W.groom} — Wedding Invitation`;
-$('#navMono').innerHTML = `${esc(W.bride[0])}<b>&amp;</b>${esc(W.groom[0])}`;
+document.title = `${W.groom} & ${W.bride} — Wedding Invitation`;
+$('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
 (() => { const e = EV.find(x => x.key === 'wedding') || EV[0], [d, m, y] = e.dateShort.split('.');
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
   $('#gateWed').innerHTML = `<small><span class="bn">${bnDay}</span> ✦ ${esc(e.day)}</small><b>${esc(d)}<i>·</i>${esc(m)}<i>·</i>${esc(y)}</b>`; })();
 
-$('#heroNames').innerHTML = `<span class="w"><span>${esc(W.bride)}</span></span><span class="amp">weds</span><span class="w"><span>${esc(W.groom)}</span></span>`;
+$('#heroNames').innerHTML = `<span class="w"><span>${esc(W.groom)}</span></span><span class="amp">weds</span><span class="w"><span>${esc(W.bride)}</span></span>`;
 $('#tagline').textContent = W.tagline;
 $('#tagBn').textContent = W.taglineBn || '';
 (() => { const e = EV[0], [d, , y] = e.dateShort.split('.');
@@ -1607,7 +1607,7 @@ else { const h = $('#heroPhoto'); h.classList.add('ph-empty','mascot'); h.style.
 $('#badgeText').textContent = `SAVE THE DATE ✦ ${EV[0].dateShort.replace(/\./g,' · ')} ✦ `;
 $('#badgeMono').innerHTML = monoHTML;
 
-const mq = [`${W.bride} & ${W.groom}`, 'শুভ বিবাহ', ...EV.map(e => `${e.title.replace(/^The /,'')} · ${e.dateShort}`), `${W.brideBn} ও ${W.groomBn}`, W.hashtag];
+const mq = [`${W.groom} & ${W.bride}`, 'শুভ বিবাহ', ...EV.map(e => `${e.title.replace(/^The /,'')} · ${e.dateShort}`), `${W.groomBn} ও ${W.brideBn}`, W.hashtag];
 $('#marquee').innerHTML = [...mq, ...mq, ...mq, ...mq].map(t => `<span${/[\u0980-\u09FF]/.test(t) ? ' class="bn"' : ''}>${esc(t)}</span>`).join('');
 
 $('#quoteBn').innerHTML = esc(W.quoteBn).replace(/\n/g,'<br>');
@@ -1615,9 +1615,9 @@ $('#quote').textContent = W.quote;
 $('#quoteBy').textContent = '— ' + W.quoteBy;
 $('#message').textContent = W.message;
 $('#parents').innerHTML = `
-  <div class="p rv"><small>${esc(W.parents.bride.relation)}</small><strong>${esc(W.bride)}</strong>${esc(W.parents.bride.names)}</div>
+  <div class="p rv"><small>${esc(W.parents.groom.relation)}</small><strong>${esc(W.groom)}</strong>${esc(W.parents.groom.names)}</div>
   <div class="and rv">&amp;</div>
-  <div class="p rv"><small>${esc(W.parents.groom.relation)}</small><strong>${esc(W.groom)}</strong>${esc(W.parents.groom.names)}</div>`;
+  <div class="p rv"><small>${esc(W.parents.bride.relation)}</small><strong>${esc(W.bride)}</strong>${esc(W.parents.bride.names)}</div>`;
 
 $('#until').textContent = `until the Shubho Drishti · ${EV[0].day}, ${EV[0].date}`;
 
@@ -1666,8 +1666,8 @@ $('#lightbox').addEventListener('click', () => $('#lightbox').classList.remove('
 
 /* footer */
 $('#footMono').innerHTML = monoHTML;
-$('#footNames').innerHTML = `${esc(W.bride)}<em>&amp;</em>${esc(W.groom)}`;
-$('#footBn').textContent = `${W.brideBn} ও ${W.groomBn}`;
+$('#footNames').innerHTML = `${esc(W.groom)}<em>&amp;</em>${esc(W.bride)}`;
+$('#footBn').textContent = `${W.groomBn} ও ${W.brideBn}`;
 $('#footDate').textContent = EV.map(e => e.dateShort).join('  ·  ');
 $('#hash').innerHTML = `${esc(W.hashtag)} <small>Tap to copy</small>`;
 $('#hash').addEventListener('click', async () => {
@@ -1692,7 +1692,7 @@ $$('[data-alpana]').forEach(el => el.innerHTML = alpanaSVG());
 function addToCalendar(e){
   const s = new Date(e.start), en = new Date(e.end || e.start);
   const f = d => d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
-  const title = `${W.bride} & ${W.groom} — ${e.title.replace(/^The /,'')}`;
+  const title = `${W.groom} & ${W.bride} — ${e.title.replace(/^The /,'')}`;
   const loc = `${e.venue}, ${e.address}`;
   if (/iPhone|iPad|Macintosh/.test(navigator.userAgent)){
     const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//wedding//invite//EN','BEGIN:VEVENT',`UID:${f(s)}-${e.key}@invite`,`DTSTAMP:${f(new Date())}`,
@@ -1705,7 +1705,7 @@ function addToCalendar(e){
 }
 $('#shareBtn').addEventListener('click', async () => {
   const url = location.href.split('?')[0];
-  const text = `You're invited to ${W.bride} & ${W.groom}'s wedding 💍\n` + EV.map(e => `${e.title.replace(/^The /,'')}: ${e.day}, ${e.date}`).join('\n');
+  const text = `You're invited to ${W.groom} & ${W.bride}'s wedding 💍\n` + EV.map(e => `${e.title.replace(/^The /,'')}: ${e.day}, ${e.date}`).join('\n');
   if (navigator.share){ try { await navigator.share({title: document.title, text, url}); } catch(_){} }
   else open(`https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}`, '_blank');
 });
