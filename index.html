@@ -437,7 +437,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
   font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#4a0915;
   background:linear-gradient(100deg,#b0823a,#f3dc9c 45%,#d6b475 60%,#b0823a);clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,10px 100%,0 50%)}
 .env-date b{font-family:var(--serif);font-weight:600;font-size:clamp(16px,1.7vw,21px);letter-spacing:.14em;color:#3b0812}
-.env-date .bn{font-family:'Tiro Bangla',serif;letter-spacing:0;text-transform:none;font-size:13px}
+.env-date i{width:1px;height:16px;background:rgba(59,8,18,.45)}
 .env-flap{position:absolute;left:0;right:0;top:0;height:50%;z-index:5;transform-origin:50% 0;transform-style:preserve-3d;
   clip-path:polygon(0 0,100% 0,50% 100%);border-radius:10px 10px 0 0;
   background:linear-gradient(180deg,#6d1426,#4f0b19);transition:transform .8s cubic-bezier(.5,0,.3,1),z-index 0s .4s}
@@ -1863,7 +1863,7 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
 (() => { const e = EV.find(x => x.key === 'wedding') || EV[0], [d, m, y] = e.dateShort.split('.');
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
   $('#envNames').innerHTML = `${esc(W.groom)}<i>&amp;</i>${esc(W.bride)}`;
-  $('#envDate').innerHTML = `<span class="bn">${bnDay}</span><b>${esc(d)} · ${esc(m)} · ${esc(y)}</b><span>${esc(e.day)}</span>`;
+  $('#envDate').innerHTML = `<span>${esc(e.day)}</span><i></i><b>${esc(d)} ${esc(new Date(e.start).toLocaleString('en-GB',{month:'long',timeZone:'Asia/Kolkata'}))} ${esc(y)}</b>`;
   const fig = L => `<svg viewBox="${L ? '82 118 136 356' : '52 118 186 356'}" preserveAspectRatio="xMidYMax meet"><defs><linearGradient id="eP${L ? 'l' : 'r'}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0dfb4"/><stop offset=".5" stop-color="#c99b52"/><stop offset="1" stop-color="#7a5520"/></linearGradient></defs>${figure(L).replace(/url\(#pd-[lr]\)/g, `url(#eP${L ? 'l' : 'r'})`)}</svg>`;
   $('#envG').innerHTML = fig(true); $('#envB').innerHTML = fig(false);
   const pt = $('#envPetals'); if (pt && !reduced){ let h = '';
