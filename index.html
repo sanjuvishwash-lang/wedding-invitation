@@ -626,6 +626,104 @@ body.modal-open{overflow:hidden}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+/* =====================================================================
+   GATE v2 — carved doors, zari border, paan-leaf shubho drishti seal
+   ===================================================================== */
+.door.l{background:
+  radial-gradient(circle,#f0dfb4 0 1.6px,#b0823a 2.2px 3.4px,transparent 3.8px) 0 2.6% / 30px 14px repeat-x,
+  radial-gradient(circle,#f0dfb4 0 1.6px,#b0823a 2.2px 3.4px,transparent 3.8px) 0 97.4% / 30px 14px repeat-x,
+  radial-gradient(ellipse 60% 50% at 100% 50%,rgba(255,190,120,.10),transparent 70%),
+  linear-gradient(90deg,#33060f,#5e0d1b 55%,#4c0a16 100%)}
+.door.r{background:
+  radial-gradient(circle,#f0dfb4 0 1.6px,#b0823a 2.2px 3.4px,transparent 3.8px) 15px 2.6% / 30px 14px repeat-x,
+  radial-gradient(circle,#f0dfb4 0 1.6px,#b0823a 2.2px 3.4px,transparent 3.8px) 15px 97.4% / 30px 14px repeat-x,
+  radial-gradient(ellipse 60% 50% at 0% 50%,rgba(255,190,120,.10),transparent 70%),
+  linear-gradient(270deg,#33060f,#5e0d1b 55%,#4c0a16 100%)}
+/* woven zari border along the meeting edge, like a saree paar */
+.door .zari{position:absolute;top:0;bottom:0;width:30px;z-index:1;
+  background:
+    linear-gradient(90deg,#b0823a 0 1px,transparent 1px calc(100% - 1px),#b0823a calc(100% - 1px)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='36' viewBox='0 0 30 36'%3E%3Cg fill='none' stroke='%23d6b475' stroke-width='1'%3E%3Cpath d='M15 3l9 15-9 15-9-15z'/%3E%3Cpath d='M15 10l4.5 8-4.5 8-4.5-8z' fill='%23d6b475' fill-opacity='.35'/%3E%3C/g%3E%3Ccircle cx='15' cy='0' r='1.6' fill='%23f0dfb4'/%3E%3Ccircle cx='15' cy='36' r='1.6' fill='%23f0dfb4'/%3E%3C/svg%3E") center top / 30px 36px repeat-y,
+    #3d0811;
+  box-shadow:inset 0 0 0 4px #3d0811, inset 0 0 0 5px rgba(214,180,117,.5)}
+.door.l .zari{left:0}
+.door.r .zari{right:0}
+/* brass ring knockers */
+.door .knob{width:34px;height:34px;margin-top:-6px;border-radius:50%;background:none;
+  border:3.5px solid #c99b52;box-shadow:inset 0 1px 0 rgba(255,240,200,.6),0 6px 12px rgba(0,0,0,.45);
+  transform-origin:50% -10px;animation:knock 6s ease-in-out infinite}
+.door .knob::before{content:"";position:absolute;left:50%;top:-22px;width:18px;height:18px;margin-left:-9px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f7e7bd,#b0823a 60%,#6b4a1a);box-shadow:0 3px 6px rgba(0,0,0,.4)}
+.door .knob{top:74%}
+.door.l .knob{right:30px}
+.door.r .knob{left:30px;animation-delay:-3s}
+@keyframes knock{0%,100%{transform:rotate(0)}8%{transform:rotate(5deg)}14%{transform:rotate(-3deg)}20%{transform:rotate(0)}}
+/* light leaking through the door seam */
+.gate-seam{position:absolute;top:0;bottom:0;left:50%;width:120px;margin-left:-60px;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse 18% 55% at 50% 50%,rgba(255,226,160,.55),rgba(255,190,110,.12) 45%,transparent 75%);
+  mix-blend-mode:screen;animation:seam 3.6s ease-in-out infinite;transition:opacity .4s}
+.gate-seam::after{content:"";position:absolute;left:50%;top:6%;bottom:6%;width:1.5px;margin-left:-.75px;
+  background:linear-gradient(transparent,#fff1c8 30%,#fff7e2 50%,#fff1c8 70%,transparent)}
+@keyframes seam{50%{opacity:.55}}
+.gate.opening .gate-seam{opacity:0}
+/* rising embers / dust in the lamp light */
+.gate-motes{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.gate-motes i{position:absolute;bottom:-10px;width:var(--s);height:var(--s);border-radius:50%;
+  background:radial-gradient(circle,#fff3cf,#f0b65a 55%,transparent 70%);opacity:0;
+  animation:mote var(--t) linear var(--dl) infinite}
+@keyframes mote{0%{transform:translate(0,0);opacity:0}12%{opacity:.9}80%{opacity:.6}100%{transform:translate(var(--x),-105vh);opacity:0}}
+.gate.opening .gate-motes{opacity:0;transition:opacity .6s}
+/* gold-foil title + fluttering prajapati */
+.gate-bn{background:linear-gradient(100deg,#b0823a 0%,#d6b475 30%,#fff4d2 45%,#d6b475 60%,#b0823a 100%) 0 0 / 260% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 6s ease-in-out infinite;
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,.35))}
+@keyframes foil{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.gate-top svg{animation:flap 1.6s ease-in-out infinite;transform-origin:50% 60%}
+@keyframes flap{0%,100%{transform:scaleX(1) translateY(0)}50%{transform:scaleX(.72) translateY(-3px)}}
+/* line-art draws itself in */
+.door-art .drw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.2s cubic-bezier(.4,0,.2,1) var(--dd,0s) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.door-art .strand{transform-box:fill-box;transform-origin:50% 0;animation:sway 3.8s ease-in-out var(--sd,0s) infinite}
+.door-art .toran{animation:none}
+/* seal: paan leaves + orbiting text ring */
+.seal-wrap{position:relative;display:grid;place-items:center}
+.paan{position:absolute;left:50%;top:50%;width:104px;height:146px;margin:-146px 0 0 -52px;transform-origin:50% 100%;
+  transition:transform 1s cubic-bezier(.6,-0.2,.2,1),opacity .8s ease .25s;pointer-events:none;
+  filter:drop-shadow(0 10px 14px rgba(0,0,0,.35))}
+.paan.l{transform:rotate(-58deg);animation:paanL 5s ease-in-out infinite}
+.paan.r{transform:rotate(58deg);animation:paanR 5s ease-in-out infinite}
+@keyframes paanL{50%{transform:rotate(-52deg)}}
+@keyframes paanR{50%{transform:rotate(52deg)}}
+.gate.opening .paan{animation:none;opacity:0}
+.gate.opening .paan.l{transform:rotate(-120deg) scale(.9)}
+.gate.opening .paan.r{transform:rotate(120deg) scale(.9)}
+.seal-ring{position:absolute;left:50%;top:50%;width:214px;height:214px;margin:-107px 0 0 -107px;pointer-events:none;
+  animation:spin 40s linear infinite;color:var(--gold-2)}
+.seal-ring circle{fill:currentColor}
+.seal-ring .trk{fill:none;stroke:currentColor;stroke-width:.8;opacity:.5}
+.gate.opening .seal-ring{opacity:0;transition:opacity .4s}
+.gate.opening .seal{transform:scale(1.12)}
+.seal{z-index:1}
+.gate-hint{margin-top:44px}
+.gate-bottom::before,.gate-bottom::after{content:"";display:inline-block;width:46px;height:1px;vertical-align:middle;margin:0 16px;
+  background:linear-gradient(90deg,transparent,var(--gold-2))}
+.gate-bottom::after{background:linear-gradient(270deg,transparent,var(--gold-2))}
+@media (max-width:600px){
+  .door .zari{width:18px;background-size:auto,18px 22px,auto}
+  .door.l .knob{right:16px}.door.r .knob{left:16px}
+  .door .knob{top:auto;bottom:5%}
+  .door .knob{width:24px;height:24px;border-width:2.5px}
+  .door .knob::before{width:13px;height:13px;margin-left:-6.5px;top:-16px}
+  .paan{width:80px;height:112px;margin:-112px 0 0 -40px}
+  .seal-ring{width:196px;height:196px;margin:-98px 0 0 -98px}
+  .gate-bottom::before,.gate-bottom::after{width:22px;margin:0 8px}
+}
+@media (prefers-reduced-motion: reduce){
+  .door-art .drw{stroke-dasharray:none;animation:none}
+  .gate-motes,.gate-seam{animation:none}
+  .seal-ring,.paan,.door .knob,.gate-bn,.gate-top svg,.door-art .strand{animation:none}
+}
 </style>
 </head>
 <body class="locked">
@@ -672,14 +770,21 @@ body.modal-open{overflow:hidden}
 <!-- ======================= GATE ======================= -->
 <div class="gate" id="gate" role="dialog" aria-label="Invitation — tap to open">
   <div class="gate-light"></div>
-  <div class="door l"><div class="panel"><svg class="door-art" data-side="l" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="knob"></span><span class="edge"></span></div>
-  <div class="door r"><div class="panel"><svg class="door-art" data-side="r" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="knob"></span><span class="edge"></span></div>
+  <div class="door l"><div class="panel"><svg class="door-art" data-side="l" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="zari"></span><span class="knob"></span><span class="edge"></span></div>
+  <div class="door r"><div class="panel"><svg class="door-art" data-side="r" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="zari"></span><span class="knob"></span><span class="edge"></span></div>
+  <div class="gate-seam"></div>
+  <div class="gate-motes" id="gateMotes"></div>
   <div class="gate-ui">
     <div class="gate-top">
       <svg aria-hidden="true"><use href="#prajapati"/></svg>
       <div class="gate-bn">শুভ বিবাহ</div>
     </div>
-    <button class="seal" id="seal" aria-label="Open the invitation"><span id="sealMono"></span><small>OPEN</small></button>
+    <div class="seal-wrap">
+      <svg class="paan l" viewBox="0 0 100 140" aria-hidden="true"><defs><linearGradient id="pgl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa548"/><stop offset=".55" stop-color="#4c7a2f"/><stop offset="1" stop-color="#2f5320"/></linearGradient></defs><path d="M50 136C47 126 40 121 30 115C9 102 1 79 6 57C13 31 33 13 50 2C67 13 87 31 94 57C99 79 91 102 70 115C60 121 53 126 50 136Z" fill="url(#pgl)" stroke="#d6b475" stroke-width="1.6"/><g fill="none" stroke="#e8cf92" stroke-width="1" stroke-linecap="round" opacity=".8"><path d="M50 130V10"/><path d="M50 104C38 96 24 86 16 70M50 104C62 96 76 86 84 70M50 78C40 70 30 58 26 44M50 78C60 70 70 58 74 44M50 52C44 44 40 34 40 24M50 52C56 44 60 34 60 24"/></g><circle cx="50" cy="136" r="2.5" fill="#d6b475"/></svg>
+      <svg class="paan r" viewBox="0 0 100 140" aria-hidden="true"><defs><linearGradient id="pgr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa548"/><stop offset=".55" stop-color="#4c7a2f"/><stop offset="1" stop-color="#2f5320"/></linearGradient></defs><path d="M50 136C47 126 40 121 30 115C9 102 1 79 6 57C13 31 33 13 50 2C67 13 87 31 94 57C99 79 91 102 70 115C60 121 53 126 50 136Z" fill="url(#pgr)" stroke="#d6b475" stroke-width="1.6"/><g fill="none" stroke="#e8cf92" stroke-width="1" stroke-linecap="round" opacity=".8"><path d="M50 130V10"/><path d="M50 104C38 96 24 86 16 70M50 104C62 96 76 86 84 70M50 78C40 70 30 58 26 44M50 78C60 70 70 58 74 44M50 52C44 44 40 34 40 24M50 52C56 44 60 34 60 24"/></g><circle cx="50" cy="136" r="2.5" fill="#d6b475"/></svg>
+      <svg class="seal-ring" viewBox="0 0 214 214" aria-hidden="true"><circle class="trk" cx="107" cy="107" r="98"/><circle cx="107" cy="9" r="2.6" transform="rotate(0 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(15 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(30 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(45 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(60 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(75 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(90 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(105 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(120 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(135 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(150 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(165 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(180 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(195 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(210 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(225 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(240 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(255 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(270 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(285 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(300 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(315 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(330 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(345 107 107)"/></svg>
+      <button class="seal" id="seal" aria-label="Open the invitation"><span id="sealMono"></span><small>OPEN</small></button>
+    </div>
     <div class="gate-hint"><span class="bn">খুলতে স্পর্শ করুন</span>Tap to open</div>
     <div class="gate-bottom" id="gateDate"></div>
   </div>
@@ -1395,7 +1500,7 @@ function doorArt(side){
     const y0 = 92 + Math.sin((x - 40) / 220 * Math.PI) * 18, len = k % 2 ? 70 : 104;
     let beads = '';
     for (let y = y0 + 8, j = 0; y < y0 + len; y += 10, j++) beads += `<circle cx="${x}" cy="${y.toFixed(1)}" r="${j % 2 ? 4.2 : 5}" fill="${j % 2 ? '#f59e0b' : '#f7c948'}"/>`;
-    toran += `<path d="M${x} ${y0.toFixed(1)}V${(y0 + len).toFixed(1)}" stroke="#d6b475" stroke-width=".8"/>${beads}<path d="M${x} ${(y0 + len + 2).toFixed(1)}l-3 8M${x} ${(y0 + len + 2).toFixed(1)}l3 8" stroke="#e34b5f" stroke-width="1.6"/>`;
+    toran += `<g class="strand" style="--sd:${(-k*0.55).toFixed(2)}s"><path d="M${x} ${y0.toFixed(1)}V${(y0 + len).toFixed(1)}" stroke="#d6b475" stroke-width=".8"/>${beads}<path d="M${x} ${(y0 + len + 2).toFixed(1)}l-3 8M${x} ${(y0 + len + 2).toFixed(1)}l3 8" stroke="#e34b5f" stroke-width="1.6"/></g>`;
     if (k < 6) toran += `<path d="M${x + 15} ${(y0 + 6).toFixed(1)}c-5 6-5 14 0 20c5-6 5-14 0-20z" fill="#4f7a3a"/>`;
   });
   // alpana rosette
@@ -1431,6 +1536,14 @@ function doorArt(side){
   return `<g class="g-top"><g class="toran">${toran}</g></g><g class="g-main"><g class="rose">${rose}</g>${L ? topor : mukut}${label}</g><g class="g-foot">${L ? shankha : fish}${lotus}</g>`;
 }
 $$('.door-art').forEach(el => el.innerHTML = doorArt(el.dataset.side));
+/* draw-in: every gold outline traces itself, staggered top to bottom */
+if (!reduced) $$('.door-art').forEach(svg => svg.querySelectorAll('.g-main .ln, .g-main .ln2, .g-foot .ln, .g-foot .ln2').forEach((el, i) => {
+  el.setAttribute('pathLength', '1'); el.classList.add('drw'); el.style.setProperty('--dd', (0.25 + Math.min(i, 60) * 0.03).toFixed(2) + 's');
+}));
+/* embers rising in the lamp light */
+(() => { const m = $('#gateMotes'); if (!m || reduced) return;
+  let h = ''; for (let i = 0; i < 26; i++) h += `<i style="left:${(Math.random()*100).toFixed(1)}%;--s:${(2+Math.random()*4).toFixed(1)}px;--t:${(9+Math.random()*9).toFixed(1)}s;--dl:${(-Math.random()*16).toFixed(1)}s;--x:${(Math.random()*80-40).toFixed(0)}px"></i>`;
+  m.innerHTML = h; })();
 
 /* on tall, narrow doors (phones) spread the art out so it never hides behind the seal */
 function layoutDoorArt(){
@@ -1663,9 +1776,9 @@ function openGate(){
   gate.classList.add('opening');
   const r = $('#seal').getBoundingClientRect();
   burst(r.left + r.width/2, r.top + r.height/2, {n:40, spread:260, size:[8,18], shapes:['petal','spark','petal','dot'], gravity:120, dur:1800});
-  setTimeout(() => gate.classList.add('open'), 250);
-  setTimeout(() => { document.body.classList.add('started'); }, 900);
-  setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2300);
+  setTimeout(() => gate.classList.add('open'), 550);
+  setTimeout(() => { document.body.classList.add('started'); }, 1200);
+  setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2600);
 }
 $('#seal').addEventListener('click', openGate);
 gate.addEventListener('click', openGate);
