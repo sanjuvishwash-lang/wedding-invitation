@@ -752,6 +752,7 @@ body.modal-open{overflow:hidden}
 .door-art .varmala{animation:figIn 1.4s cubic-bezier(.2,.75,.25,1) .7s both, mala 3.6s ease-in-out 2.1s infinite}
 @keyframes mala{0%,100%{transform:rotate(0)}50%{transform:rotate(6deg)}}
 @media (prefers-reduced-motion: reduce){.door-art .mascot,.door-art .varmala{animation:none}}
+@media (max-width:600px){.gate-hint{margin-top:30px;font-size:24px}.gate-hint .bn{font-size:13px}}
 </style>
 </head>
 <body class="locked">
@@ -1523,7 +1524,7 @@ function mascotImage(host, src, onFail){
 
 /* groom (left) / bride with varmala (right) standing inside the rosette */
 function figure(L){
-  const H = 252, top = 200, iw = L ? 181 : 195, ih = L ? 612 : 546, k = H / ih, w = iw * k, x = 150 - w / 2;
+  const H = 336, top = 120, iw = L ? 181 : 195, ih = L ? 612 : 546, k = H / ih, w = iw * k, x = 150 - w / 2;
   const halo = `<defs><radialGradient id="halo-${L ? 'l' : 'r'}"><stop offset="0" stop-color="#ffdca0" stop-opacity=".38"/><stop offset=".6" stop-color="#d6b475" stop-opacity=".1"/><stop offset="1" stop-color="#d6b475" stop-opacity="0"/></radialGradient></defs>
     <circle cx="150" cy="330" r="104" fill="url(#halo-${L ? 'l' : 'r'})"/>
     <ellipse cx="150" cy="${top + H - 3}" rx="${w * .55}" ry="5" fill="#000" opacity=".35"/>`;
@@ -1623,10 +1624,12 @@ function layoutDoorArt(){
     const tTop = uy(topR.bottom + 14), tMax = uy(sealR.top - 8) - 110;
     gTop.setAttribute('transform', `translate(0 ${(Math.min(tTop, Math.max(tMax, uy(r.top))) - 88).toFixed(1)})`);
     // rosette + emblem + label: below "Tap to open"
-    const mTop = uy(hintR.bottom + 16);
-    gMain.setAttribute('transform', `translate(0 ${(mTop - 200).toFixed(1)})`);
+    const mTop = uy(hintR.bottom + 10);
+    const wed = $('#gateWed'), maxShift = wed ? uy(wed.getBoundingClientRect().top - 8) - 546 : Infinity;
+    const shift = Math.min(mTop - 120, maxShift);
+    gMain.setAttribute('transform', `translate(0 ${shift.toFixed(1)})`);
     // shankha / fish + lotus only if they fit
-    const footTop = mTop + 356, room = H - footTop;
+    const footTop = shift + 556, room = H - footTop;
     if (room > 120){ gFoot.style.display = ''; gFoot.setAttribute('transform', `translate(0 ${(footTop - 548).toFixed(1)})`); }
     else gFoot.style.display = 'none';
   });
