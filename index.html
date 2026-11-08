@@ -596,6 +596,8 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .rs-bn{font-family:'Tiro Bangla',serif;font-size:22px;color:rgba(240,223,180,.9);margin-top:10px}
 .rsvp-side p{line-height:1.65}
 
+[hidden]{display:none!important}
+
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
 .ph-empty{
@@ -1273,8 +1275,8 @@ body.modal-open{overflow:hidden}
 <div class="menu" id="menu" aria-hidden="true">
   <button class="close" id="menuClose" aria-label="Close menu">&times;</button>
   <a href="#events"><span>01</span>Events</a>
-  <a href="#gallery"><span>02</span>Gallery</a>
-  <a href="#rsvp"><span>03</span>RSVP</a>
+  <a href="#gallery" hidden><span>02</span>Gallery</a>
+  <a href="#rsvp"><span>02</span>RSVP</a>
 </div>
 
 <main id="top">
@@ -1351,7 +1353,7 @@ body.modal-open{overflow:hidden}
   </section>
 
   <!-- ======================= GALLERY ======================= -->
-  <section class="gallery" id="gallery">
+  <section class="gallery" id="gallery" hidden>
     <div class="container">
       <div class="sec-head">
         <div class="eyebrow rv"><span class="bn-title">স্মৃতির পাতা</span>Moments</div>
