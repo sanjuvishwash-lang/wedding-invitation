@@ -349,7 +349,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .v4-flora.br{right:-8%;bottom:-4%;transform:rotate(180deg)}
 .v4-flora path{stroke-dasharray:1;stroke-dashoffset:1}
 .started .v4-flora path{animation:draw 2.2s ease forwards;animation-delay:calc(.4s + var(--k,0s))}
-.v5-bar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;margin-top:26px;max-width:1240px;width:100%}
+.v5-bar{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-end;margin-top:26px;max-width:1240px;width:100%}
 .hv5 .mini-ev{justify-content:flex-start;margin:0}
 .v5-scroll{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#a77a35}
 .v5-scroll i{width:1px;height:38px;background:linear-gradient(#b0823a,transparent);animation:cue 2s ease-in-out infinite;transform-origin:top}
@@ -1031,7 +1031,6 @@ body.modal-open{overflow:hidden}
       </div>
     </div>
     <div class="container v5-bar r4" style="--d:1s">
-      <div class="mini-ev" id="miniEv"></div>
       <a href="#events" class="v5-scroll"><i></i>Scroll</a>
     </div>
   </section>
@@ -1722,7 +1721,6 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
   $('#nmBn').textContent = `${W.groomBn} ও ${W.brideBn}`;
   $('#tagline').textContent = 'Together with their families, the couple warmly invite you to celebrate the joy of their wedding day.';
   $('#heroDate').innerHTML = `<b>${esc(d)}</b><span><strong>${esc(mon)} ${esc(y)}</strong><em>${esc(e.day)} · ${esc(e.time)}</em></span>`;
-  $('#miniEv').innerHTML = EV.map(x => `<span><b>${esc(x.title.replace(/^The /,''))}</b> · ${esc(x.day.slice(0,3))} ${esc(x.dateShort.slice(0,2))} ${esc(monthOf(x))}</span>`).join('');
   // couple
   const one = (L, cx, sc) => `<g transform="translate(${cx} 490) scale(${sc}) translate(-150 -467)">${figure(L).replace(/url\(#pd-[lr]\)/g, 'url(#v5P)')}</g>`;
   $('#v5Couple').innerHTML = `<defs><linearGradient id="v5P" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0dfb4"/><stop offset=".5" stop-color="#c99b52"/><stop offset="1" stop-color="#7a5520"/></linearGradient></defs>${one(true, 142, 1.03)}${one(false, 268, .98)}`;
