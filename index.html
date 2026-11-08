@@ -1011,7 +1011,7 @@ body.modal-open{overflow:hidden}
       <div class="v5-text">
         <div class="v5-eye r4" style="--d:.1s"><svg class="v5-gan" aria-hidden="true"><use href="#ganesh"/></svg><span class="bn">শুভ বিবাহ</span></div>
         <div class="v5-of r4" style="--d:.18s"><i></i>The Wedding Of<i></i></div>
-        <h1 class="v5-names r4" style="--d:.25s"><span class="n1" id="nmG"></span><em><i></i>weds<i></i></em><span class="n2" id="nmB"></span></h1>
+        <h1 class="v5-names r4" style="--d:.25s"><span class="n1" id="nmG"></span><em><i></i>&amp;<i></i></em><span class="n2" id="nmB"></span></h1>
         <div class="v5-bn r4" style="--d:.4s" id="nmBn"></div>
         <p class="v5-inv r4" style="--d:.5s" id="tagline"></p>
         <div class="v5-when r4" style="--d:.6s" id="heroDate"></div>
@@ -1722,7 +1722,7 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
   const mon = new Date(e.start).toLocaleString('en-GB', {month:'long', timeZone:'Asia/Kolkata'});
   $('#nmG').textContent = W.groom; $('#nmB').textContent = W.bride;
   $('#nmBn').textContent = `${W.groomBn} ও ${W.brideBn}`;
-  $('#tagline').textContent = 'Together with their families, invite you to celebrate the joy of their wedding day';
+  $('#tagline').textContent = 'Together with their families, the couple warmly invite you to celebrate the joy of their wedding day.';
   $('#heroDate').innerHTML = `<b>${esc(d)}</b><span><strong>${esc(mon)} ${esc(y)}</strong><em>${esc(e.day)} · ${esc(e.time)}</em></span>`;
   $('#miniEv').innerHTML = EV.map(x => `<span><b>${esc(x.title.replace(/^The /,''))}</b> · ${esc(x.day.slice(0,3))} ${esc(x.dateShort.slice(0,2))} ${esc(monthOf(x))}</span>`).join('');
   // couple
