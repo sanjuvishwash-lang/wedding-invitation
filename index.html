@@ -427,7 +427,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
   background:radial-gradient(ellipse at 50% 100%,#8b1d33,#5e0d1b 60%,#470a15)}
 .env-folds{position:absolute;inset:0;width:100%;height:100%}
 .env-folds path{fill:none;stroke:rgba(214,180,117,.45);stroke-width:1}
-.env-front .env-flora{width:38%;stroke:#d6b475;opacity:.85}
+
 .env-front .env-flora .dot{fill:#d6b475}
 .env-flora.f-bl{left:-3%;bottom:-6%;transform:rotate(-90deg)}
 .env-flora.f-br{right:-3%;bottom:-6%;transform:rotate(180deg)}
@@ -465,15 +465,29 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .gate.zoom .env-fig.g{transform:translateX(-60px);opacity:0}
 .gate.zoom .env-fig.b{transform:translateX(60px);opacity:0}
 .gate.zoom .env-top,.gate.zoom .gate-hint{opacity:0}
-.gate.open .env-card{transform:translateY(-26%);transition-delay:.35s}
+/* unwrap: four flaps fold outward, the site shows through */
+.ef{position:absolute;inset:0;z-index:4;backface-visibility:visible;transition:transform 1s cubic-bezier(.55,0,.25,1)}
+.ef svg{position:absolute;inset:0;width:100%;height:100%}
+.ef path{fill:none;stroke:rgba(214,180,117,.6);stroke-width:1.2}
+.ef-l{clip-path:polygon(0 0,50% 50%,0 100%);transform-origin:0 50%;background:linear-gradient(90deg,#4f0b19,#68132a)}
+.ef-r{clip-path:polygon(100% 0,50% 50%,100% 100%);transform-origin:100% 50%;background:linear-gradient(270deg,#4f0b19,#68132a)}
+.ef-b{z-index:5;clip-path:polygon(0 100%,50% 50%,100% 100%);transform-origin:50% 100%;background:radial-gradient(ellipse at 50% 100%,#8b1d33,#5e0d1b 70%)}
+.env-flap{z-index:6}
+.env-deco{position:absolute;inset:0;z-index:7;pointer-events:none;border-radius:10px;overflow:hidden;transition:opacity .35s ease}
+.env-deco .env-flora{position:absolute;width:38%;stroke:#d6b475;opacity:.85}
+.env-deco .env-flora .dot{fill:#d6b475}
+.env .seal{z-index:8}
 .env-bg,.env-alp,.env-flora.c-tl,.env-flora.c-br,.env-petals{transition:opacity .9s ease}
-.gate.env-gate{transition:background-color .9s ease,opacity .8s ease,visibility 0s 1s}
-.gate.reveal.env-gate{background-color:transparent}
-.gate.reveal .env-bg,.gate.reveal .env-alp,.gate.reveal .env-flora.c-tl,.gate.reveal .env-flora.c-br,.gate.reveal .env-petals{opacity:0}
-.gate.reveal .env-front{transform:translateY(105%);transition:transform 1s cubic-bezier(.6,0,.3,1)}
-.gate.reveal .env-card{transform:translateY(-140%);opacity:0;transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .8s ease .2s}
-.gate.reveal .env-flap{opacity:0;transition:opacity .5s ease}
-.gate.reveal .env-back{opacity:0;transition:opacity .7s ease .15s}
+.gate.env-gate{transition:background-color .9s ease,opacity .6s ease,visibility 0s .6s}
+.gate.open .env-deco{opacity:0}
+.gate.open .env-flap{transform:rotateX(180deg);transition:transform 1s cubic-bezier(.55,0,.25,1)}
+.gate.open .ef-l{transform:rotateY(-180deg);transition-delay:.12s}
+.gate.open .ef-r{transform:rotateY(180deg);transition-delay:.12s}
+.gate.open .ef-b{transform:rotateX(-180deg);transition-delay:.24s}
+.env-back{transition:opacity .7s ease}
+.gate.open .env-back{opacity:0;transition-delay:.35s}
+.gate.open.env-gate{background-color:transparent;transition-delay:.35s}
+.gate.open .env-bg,.gate.open .env-alp,.gate.open .env-flora.c-tl,.gate.open .env-flora.c-br,.gate.open .env-petals{opacity:0}
 @media (max-width:860px){
   .env-scene{grid-template-columns:1fr 1fr;grid-template-areas:"e e" "g b";gap:14px 4px;justify-items:center}
   .env{grid-area:e;width:min(440px,92vw);aspect-ratio:1.3}
@@ -481,7 +495,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
   .env-fig{height:min(250px,30vh)}
   .env-names{top:67%}
   .env-date{gap:8px;padding:6px 14px;font-size:9px;letter-spacing:.16em}
-  .env-front .env-flora{width:46%}
+  .env-deco .env-flora{width:46%}
   .env-gate .gate-hint{margin-top:12px;font-size:22px}
   .env-sh{font-size:12.5px}
 }
@@ -1094,14 +1108,10 @@ body.modal-open{overflow:hidden}
       <figure class="env-fig g" id="envG" aria-hidden="true"></figure>
       <div class="env" id="env">
         <div class="env-back"></div>
-        <div class="env-card" aria-hidden="true">
-          <svg class="env-card-gan"><use href="#ganesh"/></svg>
-          <small>শুভ বিবাহ</small>
-          <b id="envCardNames"></b>
-          <span id="envCardDate"></span>
-        </div>
-        <div class="env-front">
-          <svg class="env-folds" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100L50 50L100 100" vector-effect="non-scaling-stroke"/></svg>
+        <div class="ef ef-l"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0L50 50L0 100" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="ef ef-r"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M100 0L50 50L100 100" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="ef ef-b"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100L50 50L100 100" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="env-deco">
           <svg class="env-flora f-bl" viewBox="0 0 330 330" aria-hidden="true"></svg>
           <svg class="env-flora f-br" viewBox="0 0 330 330" aria-hidden="true"></svg>
           <div class="env-names" id="envNames"></div>
@@ -1846,8 +1856,6 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
   $('#envNames').innerHTML = `${esc(W.groom)}<i>&amp;</i>${esc(W.bride)}`;
   $('#envDate').innerHTML = `<span class="bn">${bnDay}</span><b>${esc(d)} · ${esc(m)} · ${esc(y)}</b><span>${esc(e.day)}</span>`;
-  $('#envCardNames').innerHTML = `${esc(W.groom)} <i>&amp;</i> ${esc(W.bride)}`;
-  $('#envCardDate').textContent = `${d} · ${m} · ${y}`;
   const fig = L => `<svg viewBox="${L ? '82 118 136 356' : '52 118 186 356'}" preserveAspectRatio="xMidYMax meet"><defs><linearGradient id="eP${L ? 'l' : 'r'}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0dfb4"/><stop offset=".5" stop-color="#c99b52"/><stop offset="1" stop-color="#7a5520"/></linearGradient></defs>${figure(L).replace(/url\(#pd-[lr]\)/g, `url(#eP${L ? 'l' : 'r'})`)}</svg>`;
   $('#envG').innerHTML = fig(true); $('#envB').innerHTML = fig(false);
   const pt = $('#envPetals'); if (pt && !reduced){ let h = '';
@@ -2102,8 +2110,8 @@ function openGate(){
     env.style.setProperty('--ty', (innerHeight / 2 - (r.top + r.height / 2)).toFixed(1) + 'px');
     setTimeout(() => gate.classList.add('zoom'), 250);
     setTimeout(() => gate.classList.add('open'), 1450);
-    setTimeout(() => { gate.classList.add('reveal'); document.body.classList.add('started'); }, 2450);
-    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 3500);
+    setTimeout(() => document.body.classList.add('started'), 1750);
+    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2900);
     return;
   }
   setTimeout(() => gate.classList.add('open'), 550);
