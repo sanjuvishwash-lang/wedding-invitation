@@ -652,6 +652,7 @@ footer .bot.r{right:-60px;bottom:10px;width:300px;transform:rotate(180deg)}
 .praj{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gold);margin-bottom:26px}
 .praj svg{width:58px;height:44px;animation:flutter 3s ease-in-out infinite}
 @keyframes flutter{50%{transform:scaleX(.82) translateY(-3px)}}
+.praj svg.praj-gan{width:46px;height:52px;color:var(--gold);animation:none}
 .praj .bn{font-size:18px;color:var(--wine);letter-spacing:.04em}
 .quote-bn{font-family:'Tiro Bangla',serif;font-size:clamp(22px,3.4vw,34px);line-height:1.7;color:var(--wine);margin-top:22px}
 .invite .quote{font-size:clamp(24px,3.6vw,36px);margin-top:14px;color:var(--ink);opacity:.85}
@@ -676,7 +677,8 @@ footer .bot.r{right:-60px;bottom:10px;width:300px;transform:rotate(180deg)}
 .d-card .bn-d{display:block;font-size:20px;color:var(--gold);margin-top:6px}
 .rsvp-form{outline:1.5px dashed rgba(123,23,41,.22);outline-offset:-14px}
 footer .praj{margin:0 0 26px}
-footer .praj .bn{color:var(--gold-3)}
+footer .praj svg.praj-gan{width:46px;height:52px;color:var(--gold);animation:none}
+.praj .bn{color:var(--gold-3)}
 footer .fbn{font-family:'Tiro Bangla',serif;font-size:clamp(30px,5vw,44px);color:var(--gold-2);margin-top:10px}
 footer .bless{margin-top:22px;font-family:'Tiro Bangla',serif;font-size:19px;color:var(--gold-3)}
 footer .bless small{display:block;font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(240,223,180,.65);margin-top:2px}
@@ -1041,11 +1043,8 @@ body.modal-open{overflow:hidden}
   <section class="invite" style="overflow:hidden">
     <svg class="alpana-bg" viewBox="0 0 400 400" data-alpana="1" aria-hidden="true"></svg>
     <div class="container" style="position:relative">
-      <div class="praj rv"><svg aria-hidden="true"><use href="#prajapati"/></svg><div class="bn">শ্রী শ্রী প্রজাপতয়ে নমঃ</div></div>
+      <div class="praj rv"><svg class="praj-gan" aria-hidden="true"><use href="#ganesh"/></svg><div class="bn">॥ শ্রী শ্রী গণেশায় নমঃ ॥</div></div>
       <div class="eyebrow rv"><span class="bn-title">আমন্ত্রণ</span>The Invitation</div>
-      <p class="quote-bn rv" id="quoteBn"></p>
-      <p class="quote rv" id="quote"></p>
-      <div class="quote-by rv" id="quoteBy"></div>
       <p class="msg rv" id="message"></p>
       <svg class="orn rv"><use href="#orn"/></svg>
       <div class="parents" id="parents"></div>
@@ -1778,9 +1777,6 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
 const mq = [`${W.groom} & ${W.bride}`, 'শুভ বিবাহ', ...EV.map(e => `${e.title.replace(/^The /,'')} · ${e.dateShort}`), `${W.groomBn} ও ${W.brideBn}`, W.hashtag];
 $('#marquee').innerHTML = [...mq, ...mq, ...mq, ...mq].map(t => `<span${/[\u0980-\u09FF]/.test(t) ? ' class="bn"' : ''}>${esc(t)}</span>`).join('');
 
-$('#quoteBn').innerHTML = esc(W.quoteBn).replace(/\n/g,'<br>');
-$('#quote').textContent = W.quote;
-$('#quoteBy').textContent = '— ' + W.quoteBy;
 $('#message').textContent = W.message;
 $('#parents').innerHTML = `
   <div class="p rv"><strong>${esc(W.groom)}</strong><small>${esc(W.parents.groom.relation)}</small>${esc(W.parents.groom.names)}</div>
