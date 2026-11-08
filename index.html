@@ -1584,7 +1584,7 @@ function doorArt(side){
   const label = `<text x="150" y="30" text-anchor="middle" font-family="Galada, cursive" font-size="22" fill="#d6b475" letter-spacing="1">${L ? 'বর' : 'কনে'}</text>
     <text class="door-name" x="150" y="74" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="48" fill="#f0dfb4">${esc(L ? W.groom : W.bride)}</text>
     <text x="150" y="97" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="16" fill="#d6b475" letter-spacing="1.5">${esc(L ? W.groomBn : W.brideBn)}</text>`;
-  return `<g class="g-top"></g><g class="g-main">${niche}<g class="toran">${toran}</g>${figure(L)}<g class="g-name">${label}</g></g><g class="g-foot"></g>`;
+  return `<g class="g-top"></g><g class="g-main"><g class="g-stage">${niche}<g class="toran">${toran}</g>${figure(L)}</g><g class="g-name">${label}</g></g><g class="g-foot"></g>`;
 }
 $$('.door-art').forEach(el => el.innerHTML = doorArt(el.dataset.side));
 /* draw-in: every gold outline traces itself, staggered top to bottom */
@@ -1606,10 +1606,12 @@ function layoutDoorArt(){
     if (r.height / r.width < 2.3){                     // wide doors: original composition
       svg.setAttribute('viewBox', '0 -64 300 640');
       svg.querySelector('.g-name').setAttribute('transform', 'translate(0 -56)');
+      svg.querySelector('.g-stage').setAttribute('transform', 'translate(150 532) scale(1.32) translate(-150 -468)');
       [gTop, gMain, gFoot].forEach(g => g.removeAttribute('transform'));
       gFoot.style.display = ''; return;
     }
     svg.querySelector('.g-name').removeAttribute('transform');
+    svg.querySelector('.g-stage').removeAttribute('transform');
     const k = r.width / 300, H = r.height / k;          // user units per screen px
     svg.setAttribute('viewBox', `0 0 300 ${H.toFixed(1)}`);
     const uy = y => (y - r.top) / k;
