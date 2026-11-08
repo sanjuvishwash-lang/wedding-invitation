@@ -813,8 +813,8 @@ body.modal-open{overflow:hidden}
 <!-- ======================= GATE ======================= -->
 <div class="gate" id="gate" role="dialog" aria-label="Invitation — tap to open">
   <div class="gate-light"></div>
-  <div class="door l"><div class="panel"><svg class="door-art" data-side="l" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="zari"></span><span class="knob"></span><span class="edge"></span></div>
-  <div class="door r"><div class="panel"><svg class="door-art" data-side="r" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="zari"></span><span class="knob"></span><span class="edge"></span></div>
+  <div class="door l"><div class="panel"><svg class="door-art" data-side="l" viewBox="0 -64 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="zari"></span><span class="knob"></span><span class="edge"></span></div>
+  <div class="door r"><div class="panel"><svg class="door-art" data-side="r" viewBox="0 -64 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="zari"></span><span class="knob"></span><span class="edge"></span></div>
   <div class="gate-seam"></div>
   <div class="gate-motes" id="gateMotes"></div>
   <div class="gate-ui">
@@ -1580,11 +1580,10 @@ function doorArt(side){
     <ellipse cx="150" cy="330" rx="96" ry="150" fill="url(#ng-${id})"/>
     <path class="ln" d="M70 468V222C70 172 110 148 150 128C190 148 230 172 230 222V468"/>
     <path class="ln2" d="M78 468V224C78 178 114 156 150 137C186 156 222 178 222 224V468"/>
-    <path class="ln2" d="M62 468H238"/>
-    <circle class="fill" cx="150" cy="106" r="3.2"/>`;
-  const label = `<text x="150" y="500" text-anchor="middle" font-family="Galada, cursive" font-size="22" fill="#d6b475" letter-spacing="1">${L ? 'বর' : 'কনে'}</text>
-    <text class="door-name" x="150" y="544" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="48" fill="#f0dfb4">${esc(L ? W.groom : W.bride)}</text>
-    <text x="150" y="568" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="16" fill="#d6b475" letter-spacing="1.5">${esc(L ? W.groomBn : W.brideBn)}</text>`;
+    <path class="ln2" d="M62 468H238"/>`;
+  const label = `<text x="150" y="30" text-anchor="middle" font-family="Galada, cursive" font-size="22" fill="#d6b475" letter-spacing="1">${L ? 'বর' : 'কনে'}</text>
+    <text class="door-name" x="150" y="74" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="48" fill="#f0dfb4">${esc(L ? W.groom : W.bride)}</text>
+    <text x="150" y="97" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="16" fill="#d6b475" letter-spacing="1.5">${esc(L ? W.groomBn : W.brideBn)}</text>`;
   return `<g class="g-top"></g><g class="g-main">${niche}<g class="toran">${toran}</g>${figure(L)}${label}</g><g class="g-foot"></g>`;
 }
 $$('.door-art').forEach(el => el.innerHTML = doorArt(el.dataset.side));
@@ -1605,7 +1604,7 @@ function layoutDoorArt(){
     const r = svg.getBoundingClientRect(); if (!r.width || !r.height) return;
     const gTop = svg.querySelector('.g-top'), gMain = svg.querySelector('.g-main'), gFoot = svg.querySelector('.g-foot');
     if (r.height / r.width < 2.3){                     // wide doors: original composition
-      svg.setAttribute('viewBox', '0 0 300 640');
+      svg.setAttribute('viewBox', '0 -64 300 640');
       [gTop, gMain, gFoot].forEach(g => g.removeAttribute('transform'));
       gFoot.style.display = ''; return;
     }
@@ -1618,8 +1617,8 @@ function layoutDoorArt(){
     gTop.setAttribute('transform', `translate(0 ${(Math.min(tTop, Math.max(tMax, uy(r.top))) - 88).toFixed(1)})`);
     // rosette + emblem + label: below "Tap to open"
     const mTop = uy(hintR.bottom + 10);
-    const wed = $('#gateWed'), maxShift = wed ? uy(wed.getBoundingClientRect().top - 8) - 574 : Infinity;
-    const shift = Math.min(mTop - 102, maxShift);
+    const wed = $('#gateWed'), maxShift = wed ? uy(wed.getBoundingClientRect().top - 8) - 474 : Infinity;
+    const shift = Math.min(mTop - 6, maxShift);
     gMain.setAttribute('transform', `translate(0 ${shift.toFixed(1)})`);
     // shankha / fish + lotus only if they fit
     const footTop = shift + 556, room = H - footTop;
