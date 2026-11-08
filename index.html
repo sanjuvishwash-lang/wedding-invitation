@@ -108,6 +108,17 @@ section{position:relative;padding:120px 0}
 .gate-ui{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--gold-3);transition:opacity .5s ease}
 .gate.opening .gate-ui{opacity:0}
 .gate-top{position:absolute;top:7%;left:0;right:0}
+.door-art{position:absolute;inset:4% 6% 3%;width:88%;height:93%;overflow:visible}
+@media (max-width:600px){.door .panel{inset:9% 8% 7%}.door-art{inset:2% 3%;width:94%;height:96%}}
+.door-art .ln{fill:none;stroke:#d6b475;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.door-art .ln2{fill:none;stroke:rgba(214,180,117,.55);stroke-width:1}
+.door-art .fill{fill:#d6b475}
+.door-art .rose{transform-box:fill-box;transform-origin:center;animation:spin 80s linear infinite}
+.door.r .door-art .rose{animation-direction:reverse}
+.door-art .toran{transform-box:fill-box;transform-origin:50% 0;animation:sway 4.5s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(1.6deg)}}
+.door-art .glow{animation:glowp 3.2s ease-in-out infinite}
+@keyframes glowp{50%{opacity:.55}}
 .gate-top .eyebrow{color:var(--gold-2)}
 .gate-top .script{font-size:clamp(34px,6vw,48px);color:var(--gold-3);margin-top:6px;line-height:1.1}
 .seal{
@@ -661,14 +672,12 @@ body.modal-open{overflow:hidden}
 <!-- ======================= GATE ======================= -->
 <div class="gate" id="gate" role="dialog" aria-label="Invitation — tap to open">
   <div class="gate-light"></div>
-  <div class="door l"><div class="panel"></div><span class="knob"></span><span class="edge"></span></div>
-  <div class="door r"><div class="panel"></div><span class="knob"></span><span class="edge"></span></div>
+  <div class="door l"><div class="panel"><svg class="door-art" data-side="l" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="knob"></span><span class="edge"></span></div>
+  <div class="door r"><div class="panel"><svg class="door-art" data-side="r" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg></div><span class="knob"></span><span class="edge"></span></div>
   <div class="gate-ui">
     <div class="gate-top">
       <svg aria-hidden="true"><use href="#prajapati"/></svg>
       <div class="gate-bn">শুভ বিবাহ</div>
-      <div class="eyebrow" id="gateEyebrow" style="margin-top:10px">You are cordially invited</div>
-      <div class="script" id="gateName"></div>
     </div>
     <button class="seal" id="seal" aria-label="Open the invitation"><span id="sealMono"></span><small>OPEN</small></button>
     <div class="gate-hint"><span class="bn">খুলতে স্পর্শ করুন</span>Tap to open</div>
@@ -1377,13 +1386,89 @@ function mascotImage(host, src, onFail){
   img.src = src;
 }
 
+/* ---------- door artwork (left: groom / right: bride) ---------- */
+function doorArt(side){
+  const L = side === 'l';
+  // marigold toran with mango leaves
+  let toran = '<path class="ln2" d="M40 92Q150 128 260 92"/>';
+  [60, 90, 120, 150, 180, 210, 240].forEach((x, k) => {
+    const y0 = 92 + Math.sin((x - 40) / 220 * Math.PI) * 18, len = k % 2 ? 70 : 104;
+    let beads = '';
+    for (let y = y0 + 8, j = 0; y < y0 + len; y += 10, j++) beads += `<circle cx="${x}" cy="${y.toFixed(1)}" r="${j % 2 ? 4.2 : 5}" fill="${j % 2 ? '#f59e0b' : '#f7c948'}"/>`;
+    toran += `<path d="M${x} ${y0.toFixed(1)}V${(y0 + len).toFixed(1)}" stroke="#d6b475" stroke-width=".8"/>${beads}<path d="M${x} ${(y0 + len + 2).toFixed(1)}l-3 8M${x} ${(y0 + len + 2).toFixed(1)}l3 8" stroke="#e34b5f" stroke-width="1.6"/>`;
+    if (k < 6) toran += `<path d="M${x + 15} ${(y0 + 6).toFixed(1)}c-5 6-5 14 0 20c5-6 5-14 0-20z" fill="#4f7a3a"/>`;
+  });
+  // alpana rosette
+  const cx = 150, cy = 330;
+  let rose = `<circle class="ln2" cx="${cx}" cy="${cy}" r="112"/><circle class="ln2" cx="${cx}" cy="${cy}" r="100" stroke-dasharray="2 6"/><circle class="ln2" cx="${cx}" cy="${cy}" r="78"/>`;
+  for (let k = 0; k < 16; k++) rose += `<path class="ln" d="M${cx} ${cy - 112}c9 10 9 22 0 30c-9-8-9-20 0-30z" transform="rotate(${k * 22.5} ${cx} ${cy})"/><circle class="fill" cx="${cx}" cy="${cy - 124}" r="2.4" transform="rotate(${k * 22.5 + 11.25} ${cx} ${cy})"/>`;
+  for (let k = 0; k < 8; k++) rose += `<path class="ln2" d="M${cx} ${cy - 78}c14 4 22 14 16 24" transform="rotate(${k * 45} ${cx} ${cy})"/>`;
+  // centre emblem
+  const topor = `<g class="glow">
+    <path class="ln" d="M150 252C140 292 128 336 116 382H184C172 336 160 292 150 252Z"/>
+    <path class="ln2" d="M127 350Q150 342 173 350M133 322Q150 315 167 322M139 296Q150 291 161 296M144 272Q150 269 156 272"/>
+    <path class="ln" d="M112 384Q150 374 188 384"/>
+    ${[116,128,140,152,164,176,188].map(x => `<circle class="ln" cx="${x - 2}" cy="388" r="4"/>`).join('')}
+    <circle class="fill" cx="150" cy="248" r="4"/><path class="ln" d="M150 244V232"/>
+    <circle cx="150" cy="352" r="3" fill="#e34b5f"/><circle cx="150" cy="324" r="2.4" fill="#e34b5f"/></g>`;
+  const mukut = `<g class="glow">
+    ${[[102,372],[104,354],[110,338],[119,324],[130,313],[143,306],[157,306],[170,313],[181,324],[190,338],[196,354],[198,372]].map(([x,y]) => `<circle class="ln" cx="${x}" cy="${y}" r="5.5"/>`).join('')}
+    <path class="ln" d="M104 382C104 340 124 312 150 304C176 312 196 340 196 382C178 372 122 372 104 382Z"/>
+    <path class="ln2" d="M116 372C118 346 132 328 150 322C168 328 182 346 184 372"/>
+    <circle cx="150" cy="344" r="6" fill="#e34b5f"/><circle cx="130" cy="356" r="3" fill="#e34b5f"/><circle cx="170" cy="356" r="3" fill="#e34b5f"/>
+    <path class="ln" d="M150 284C156 292 156 300 150 304C144 300 144 292 150 284Z"/></g>`;
+  // lotus base + shankha / jora maach
+  const lotus = `<g transform="translate(150 568)">
+    <path class="ln" d="M0-30c10 12 10 26 0 34c-10-8-10-22 0-34z"/>
+    <path class="ln" d="M-4 4c-10-14-26-18-36-14c4 12 20 18 36 14zM4 4c10-14 26-18 36-14c-4 12-20 18-36 14z"/>
+    <path class="ln2" d="M-60 10Q0 24 60 10"/></g>`;
+  const shankha = `<g transform="translate(150 500)">
+    <path class="ln" d="M-34 8C-34-14-6-26 18-18C34-12 38 4 26 14C14 24-14 26-34 8Z"/>
+    <path class="ln2" d="M-20 6C-18-6-4-12 8-8C18-4 18 6 10 10C2 14-12 14-20 6"/>
+    <path class="ln" d="M26 14L40 22M-34 8L-44 4"/><path class="ln2" d="M-8-20C-4-10 0 0 0 12"/></g>`;
+  const fish = `<g transform="translate(150 500)"><svg x="-40" y="-24" width="80" height="50" viewBox="0 0 64 40" style="color:#d6b475"><use href="#fish"/></svg></g>`;
+  const label = `<text x="150" y="${L ? 466 : 466}" text-anchor="middle" font-family="Galada, cursive" font-size="34" fill="#f0dfb4">${L ? 'বর' : 'কনে'}</text>`;
+  return `<g class="g-top"><g class="toran">${toran}</g></g><g class="g-main"><g class="rose">${rose}</g>${L ? topor : mukut}${label}</g><g class="g-foot">${L ? shankha : fish}${lotus}</g>`;
+}
+$$('.door-art').forEach(el => el.innerHTML = doorArt(el.dataset.side));
+
+/* on tall, narrow doors (phones) spread the art out so it never hides behind the seal */
+function layoutDoorArt(){
+  const top = $('.gate-top'), hint = $('.gate-hint'), seal = $('#seal');
+  if (!top || !hint) return;
+  $$('.door-art').forEach(svg => {
+    const r = svg.getBoundingClientRect(); if (!r.width || !r.height) return;
+    const gTop = svg.querySelector('.g-top'), gMain = svg.querySelector('.g-main'), gFoot = svg.querySelector('.g-foot');
+    if (r.height / r.width < 2.3){                     // wide doors: original composition
+      svg.setAttribute('viewBox', '0 0 300 640');
+      [gTop, gMain, gFoot].forEach(g => g.removeAttribute('transform'));
+      gFoot.style.display = ''; return;
+    }
+    const k = r.width / 300, H = r.height / k;          // user units per screen px
+    svg.setAttribute('viewBox', `0 0 300 ${H.toFixed(1)}`);
+    const uy = y => (y - r.top) / k;
+    const sealR = seal.getBoundingClientRect(), topR = top.getBoundingClientRect(), hintR = hint.getBoundingClientRect();
+    // toran: just under the শুভ বিবাহ block, finishing above the seal
+    const tTop = uy(topR.bottom + 14), tMax = uy(sealR.top - 8) - 110;
+    gTop.setAttribute('transform', `translate(0 ${(Math.min(tTop, Math.max(tMax, uy(r.top))) - 88).toFixed(1)})`);
+    // rosette + emblem + label: below "Tap to open"
+    const mTop = uy(hintR.bottom + 16);
+    gMain.setAttribute('transform', `translate(0 ${(mTop - 200).toFixed(1)})`);
+    // shankha / fish + lotus only if they fit
+    const footTop = mTop + 284, room = H - footTop;
+    if (room > 140){ gFoot.style.display = ''; gFoot.setAttribute('transform', `translate(0 ${(footTop - 470).toFixed(1)})`); }
+    else gFoot.style.display = 'none';
+  });
+}
+layoutDoorArt();
+addEventListener('resize', layoutDoorArt);
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(layoutDoorArt);
+
 /* ---------- bind content ---------- */
 document.title = `${W.bride} & ${W.groom} — Wedding Invitation`;
 $('#sealMono').innerHTML = monoHTML;
 $('#navMono').innerHTML = `${esc(W.bride[0])}<b>&amp;</b>${esc(W.groom[0])}`;
 $('#gateDate').textContent = EV.map(e => e.dateShort).join('  ·  ');
-if (guest){ $('#gateEyebrow').textContent = 'Specially for'; $('#gateName').textContent = guest; }
-else $('#gateName').textContent = `${W.bride} & ${W.groom}`;
 
 $('#heroNames').innerHTML = `<span class="w"><span>${esc(W.bride)}</span></span><span class="amp">&amp;</span><span class="w"><span>${esc(W.groom)}</span></span>`;
 $('#tagline').textContent = W.tagline;
