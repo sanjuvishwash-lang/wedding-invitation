@@ -531,6 +531,31 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .v5-when em{font-size:16px!important;margin-top:6px!important;color:#7a5a3e!important}
 @media (max-width:980px){.v5-when{padding:16px 22px 16px 14px;gap:16px!important}.v5-when::before{left:50%;translate:-50% -50%}.v5-when b{width:78px;height:78px;font-size:42px!important}.v5-when strong{font-size:21px!important}}
 
+
+/* wedding-week calendar */
+.v5-cal{position:relative;display:inline-block;margin-top:30px;padding:16px 18px 14px;border-radius:18px;text-align:center;
+  background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(249,236,216,.88));
+  box-shadow:0 0 0 1px #c99b52,inset 0 0 0 5px rgba(255,252,246,.95),inset 0 0 0 6px rgba(201,155,82,.35),0 20px 44px rgba(94,13,27,.13)}
+.v5-cal::before,.v5-cal::after{content:"";position:absolute;top:-9px;width:12px;height:22px;border-radius:6px;background:linear-gradient(#c99b52,#8a5f22);box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.v5-cal::before{left:38px}.v5-cal::after{right:38px}
+.cal-h{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:.32em;text-transform:uppercase;color:var(--wine);padding:2px 0 10px;border-bottom:1px dashed rgba(176,130,58,.45)}
+.cal-h span{color:#b0823a;font-size:12px;letter-spacing:0}
+.cal-h i{width:26px;height:1px;background:#c99b52}
+.cal-row{display:grid;grid-template-columns:repeat(7,minmax(46px,1fr));gap:2px;margin-top:10px;align-items:start}
+.wkd{position:relative;display:flex;flex-direction:column;align-items:center;padding:6px 2px 4px;border-radius:12px}
+.wkd small{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#a77a35}
+.wkd b{display:grid;place-items:center;width:38px;height:38px;margin-top:4px;border-radius:50%;font-family:var(--serif);font-weight:500;font-size:20px;color:#6b4a3e;font-variant-numeric:lining-nums}
+.wkd em{font-style:normal;font-family:var(--script);font-size:15px;line-height:1;margin-top:5px;color:#b0823a;white-space:nowrap}
+.wkd.ev b{color:var(--wine);box-shadow:0 0 0 1.5px #c99b52}
+.wkd.main b{width:58px;height:58px;margin-top:3px;font-size:30px;font-weight:600;color:#f6e1a8;
+  background:radial-gradient(circle at 35% 30%,#9a1f37,#4a0915 78%);box-shadow:0 0 0 2px #c99b52,0 0 0 5px #fff8ec,0 0 0 6px rgba(201,155,82,.6),0 10px 22px rgba(94,13,27,.3)}
+.wkd.main::before{content:"";position:absolute;left:50%;top:15px;width:76px;height:76px;margin-left:-38px;border-radius:50%;border:1px solid rgba(201,155,82,.7);animation:calp 2.6s ease-out infinite}
+@keyframes calp{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+.wkd.main small{color:var(--wine);position:relative;z-index:1}
+.wkd.main em{color:var(--wine);font-weight:600;font-size:17px}
+.cal-f{margin-top:10px;padding-top:9px;border-top:1px dashed rgba(176,130,58,.45);font-family:var(--sans);font-size:14px;letter-spacing:.08em;color:#7a5a3e}
+@media (max-width:980px){.v5-cal{padding:14px 10px 12px}.cal-row{grid-template-columns:repeat(7,minmax(38px,1fr))}.wkd b{width:32px;height:32px;font-size:17px}.wkd.main b{width:48px;height:48px;font-size:25px}.wkd.main::before{width:64px;height:64px;margin-left:-32px;top:15px}.wkd em{font-size:12.5px}.cal-h{font-size:17px}}
+
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
 .ph-empty{
@@ -1190,7 +1215,7 @@ body.modal-open{overflow:hidden}
         </div>
         <h1 class="v5-names r4" style="--d:.25s"><span class="n1" id="nmG"></span><em><i></i>weds<i></i></em><span class="n2" id="nmB"></span></h1>
         <p class="v5-inv r4" style="--d:.5s" id="tagline"></p>
-        <div class="v5-when r4" style="--d:.6s" id="heroDate"></div>
+        <div class="v5-cal r4" style="--d:.6s" id="heroDate"></div>
       </div>
       <div class="v5-stage r4" style="--d:.2s" aria-hidden="true">
         <svg class="v5-ring" viewBox="0 0 400 400" data-alpana="5"></svg>
@@ -1901,7 +1926,13 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
   const mon = new Date(e.start).toLocaleString('en-GB', {month:'long', timeZone:'Asia/Kolkata'});
   $('#nmG').textContent = W.groom; $('#nmB').textContent = W.bride;
   $('#tagline').textContent = 'Together with their families, the couple warmly invite you to celebrate the joy of their wedding day.';
-  $('#heroDate').innerHTML = `<b>${esc(d)}</b><span><strong>${esc(mon)} ${esc(y)}</strong><em>${esc(e.day)} · ${esc(e.time)}</em></span>`;
+  // wedding-week calendar strip
+  (() => { const day = new Date(e.start.slice(0, 10) + 'T12:00:00Z'), dow = (day.getUTCDay() + 6) % 7, mon0 = new Date(day - dow * 864e5);
+    const evOn = ds => EV.find(x => x.start.slice(0, 10) === ds);
+    let cells = '';
+    for (let i = 0; i < 7; i++){ const c = new Date(+mon0 + i * 864e5), ds = c.toISOString().slice(0, 10), ev = evOn(ds), main = ev && ev === e;
+      cells += `<div class="wkd${main ? ' main' : ev ? ' ev' : ''}"><small>${c.toLocaleString('en-GB', {weekday:'short', timeZone:'UTC'})}</small><b>${c.getUTCDate()}</b>${ev ? `<em>${esc(ev.title.replace(/^The /, ''))}</em>` : ''}</div>`; }
+    $('#heroDate').innerHTML = `<div class="cal-h"><i></i>${esc(mon)} <span>✦</span> ${esc(y)}<i></i></div><div class="cal-row">${cells}</div><div class="cal-f">${esc(e.day)} · ${esc(e.time)}</div>`; })();
   // couple
   const one = (L, cx, sc) => `<g transform="translate(${cx} 490) scale(${sc}) translate(-150 -467)">${figure(L).replace(/url\(#pd-[lr]\)/g, 'url(#v5P)')}</g>`;
   $('#v5Couple').innerHTML = `<defs><linearGradient id="v5P" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0dfb4"/><stop offset=".5" stop-color="#c99b52"/><stop offset="1" stop-color="#7a5520"/></linearGradient></defs>${one(true, 142, 1.03)}${one(false, 268, .98)}`;
