@@ -747,6 +747,11 @@ body.modal-open{overflow:hidden}
   .gate-wed small{font-size:9.5px}
   .gate-bottom{display:none}
 }
+.door-art .mascot{filter:drop-shadow(0 6px 10px rgba(0,0,0,.45));animation:figIn 1.4s cubic-bezier(.2,.75,.25,1) .5s both}
+@keyframes figIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.door-art .varmala{animation:figIn 1.4s cubic-bezier(.2,.75,.25,1) .7s both, mala 3.6s ease-in-out 2.1s infinite}
+@keyframes mala{0%,100%{transform:rotate(0)}50%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion: reduce){.door-art .mascot,.door-art .varmala{animation:none}}
 </style>
 </head>
 <body class="locked">
@@ -1516,6 +1521,32 @@ function mascotImage(host, src, onFail){
   img.src = src;
 }
 
+/* groom (left) / bride with varmala (right) standing inside the rosette */
+function figure(L){
+  const H = 252, top = 200, iw = L ? 181 : 195, ih = L ? 612 : 546, k = H / ih, w = iw * k, x = 150 - w / 2;
+  const halo = `<defs><radialGradient id="halo-${L ? 'l' : 'r'}"><stop offset="0" stop-color="#ffdca0" stop-opacity=".38"/><stop offset=".6" stop-color="#d6b475" stop-opacity=".1"/><stop offset="1" stop-color="#d6b475" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="150" cy="330" r="104" fill="url(#halo-${L ? 'l' : 'r'})"/>
+    <ellipse cx="150" cy="${top + H - 3}" rx="${w * .55}" ry="5" fill="#000" opacity=".35"/>`;
+  const img = `<image class="mascot" href="${L ? 'groom.png' : 'bride.png'}" x="${x.toFixed(1)}" y="${top}" width="${w.toFixed(1)}" height="${H}"/>`;
+  if (L) return `<g class="fig">${halo}${img}</g>`;
+  // varmala hanging from her hands, swinging towards the groom
+  const hx = x + 15 * k, hy = top + 196 * k;
+  const segs = [[[hx - 2, hy - 8], [hx - 34, hy + 14], [hx - 30, hy + 84], [hx - 12, hy + 92]],
+                [[hx - 12, hy + 92], [hx + 6, hy + 98], [hx + 14, hy + 44], [hx + 3, hy + 8]]];
+  const bez = ([a, b, c, d], t) => { const u = 1 - t; return [0, 1].map(i => u*u*u*a[i] + 3*u*u*t*b[i] + 3*u*t*t*c[i] + t*t*t*d[i]); };
+  const pts = []; segs.forEach(sg => { for (let i = 0; i <= 60; i++) pts.push(bez(sg, i / 60)); });
+  let beads = '', acc = 0, n = 0, prev = pts[0];
+  pts.forEach(p => { acc += Math.hypot(p[0] - prev[0], p[1] - prev[1]); prev = p;
+    if (acc < 4.4) return; acc = 0; n++;
+    beads += n % 5 === 0
+      ? `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.7" fill="#c8102e"/><circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="1.5" fill="#7a0a1c"/><ellipse cx="${(p[0] + 4).toFixed(1)}" cy="${(p[1] + 1).toFixed(1)}" rx="2.4" ry="1.1" fill="#3f7a2e"/>`
+      : `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.7" fill="#fffaf0" stroke="#e2d2b0" stroke-width=".5"/>`;
+  });
+  const b = bez(segs[0], 1);
+  const tassel = `<path d="M${b[0]} ${b[1] + 3}l-3 12M${b[0]} ${b[1] + 3}l0 13M${b[0]} ${b[1] + 3}l3 12" stroke="#d6b475" stroke-width="1.2" stroke-linecap="round"/><circle cx="${b[0]}" cy="${b[1] + 3}" r="2.6" fill="#d6b475"/>`;
+  const mala = `<g class="varmala" style="transform-origin:${hx}px ${hy}px">${tassel}${beads}</g>`;
+  return `<g class="fig">${halo}${img}${mala}</g>`;
+}
 /* ---------- door artwork (left: groom / right: bride) ---------- */
 function doorArt(side){
   const L = side === 'l';
@@ -1560,7 +1591,7 @@ function doorArt(side){
   const label = `<text x="150" y="472" text-anchor="middle" font-family="Galada, cursive" font-size="24" fill="#d6b475" letter-spacing="1">${L ? 'বর' : 'কনে'}</text>
     <text class="door-name" x="150" y="514" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="46" fill="#f0dfb4">${esc(L ? W.groom : W.bride)}</text>
     <text x="150" y="538" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="16" fill="#d6b475" letter-spacing="1.5">${esc(L ? W.groomBn : W.brideBn)}</text>`;
-  return `<g class="g-top"><g class="toran">${toran}</g></g><g class="g-main"><g class="rose">${rose}</g>${L ? topor : mukut}${label}</g><g class="g-foot">${L ? shankha : fish}${lotus}</g>`;
+  return `<g class="g-top"><g class="toran">${toran}</g></g><g class="g-main"><g class="rose">${rose}</g>${figure(L)}${label}</g><g class="g-foot">${L ? shankha : fish}${lotus}</g>`;
 }
 $$('.door-art').forEach(el => el.innerHTML = doorArt(el.dataset.side));
 /* draw-in: every gold outline traces itself, staggered top to bottom */
