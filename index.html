@@ -712,7 +712,7 @@ body.modal-open{overflow:hidden}
 @media (max-width:600px){
   .door .zari{width:18px;background-size:auto,18px 22px,auto}
   .door.l .knob{right:16px}.door.r .knob{left:16px}
-  .door .knob{top:auto;bottom:5%}
+  .door .knob{display:none}
   .door .knob{width:24px;height:24px;border-width:2.5px}
   .door .knob::before{width:13px;height:13px;margin-left:-6.5px;top:-16px}
   .paan{width:80px;height:112px;margin:-112px 0 0 -40px}
@@ -724,6 +724,10 @@ body.modal-open{overflow:hidden}
   .gate-motes,.gate-seam{animation:none}
   .seal-ring,.paan,.door .knob,.gate-bn,.gate-top svg,.door-art .strand{animation:none}
 }
+.seal-ganesh{width:66px;height:72px;margin-top:-12px;color:var(--gold-3);filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.seal small{bottom:18px}
+.door-art .door-name{filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+@media (max-width:600px){.seal-ganesh{width:60px;height:66px}}
 </style>
 </head>
 <body class="locked">
@@ -741,6 +745,8 @@ body.modal-open{overflow:hidden}
         <path d="M81 20h18"/>
       </g>
     </symbol>
+    <!-- Ganesha line icon: Ameya Narvankar, the Noun Project, CC BY-SA 3.0 (via Wikimedia Commons) -->
+    <symbol id="ganesh" viewBox="11 7 65 72"><path fill="currentColor" d="m 67.301793,29.785002 c -2.57,-1.802 -6.407,0.056 -9.292,2.827 -0.479,-1.583 -1.475,-3.249 -3.023,-4.682 0.002,-0.009 0.004,-0.019 0.006,-0.028 0.382,-2.249 -1.305,-6.376 -6.141,-8.094 -0.159,-0.056 -0.318,-0.109 -0.479,-0.161 -0.062,-1.207 -0.857,-2.578 -2.623,-3.225 -0.135,-0.047 -0.27,-0.091 -0.406,-0.131 0.266,-0.649 0.4,-1.292 0.4,-1.918 0,-2.597 -2.288,-4.6350004 -2.386,-4.7210004 -0.188,-0.165 -0.47,-0.165 -0.66,0 -0.097,0.086 -2.385,2.1240004 -2.385,4.7210004 0,0.628 0.134,1.271 0.399,1.919 -0.138,0.041 -0.275,0.084 -0.411,0.132 -1.761,0.645 -2.554,2.015 -2.617,3.222 -0.161,0.052 -0.322,0.105 -0.482,0.162 -4.653,1.653 -6.383,5.51 -6.173,7.816 -1.746,1.498 -2.853,3.291 -3.367,4.987 -2.886,-2.771 -6.726,-4.63 -9.33,-2.797 -4.596,3.939 -7.336,8.116 -5.77,15.718 0.52,2.046 1.467,4.118 2.47,6.312 1.297,2.837 2.638,5.771 3.131,8.856 0.193,1.204 0.872,1.691 1.409,1.888 2.491,0.912 7.293,-2.404 9.738,-4.507 1.029,-0.885 2.17,-1.98 2.754,-2.915 0.41,0.958 0.819,2.879 -0.056,6.168 -0.043,0.163 -10e-4,0.337 0.111,0.463 0.112,0.125 0.28,0.185 0.447,0.16 0.101,-0.016 1.958,-0.321 3.283,-2.123 -0.044,7.702 2.359,12.17 7.872,15.439 1.97,1.17 4.146,1.727 6.297,1.727 4.131,0 8.167,-2.055 10.459,-5.766 1.357,-2.2 1.768,-4.788 1.152,-7.288 -0.264,-1.075 -0.704,-2.079 -1.296,-2.982 2.09,1.257 4.314,2.155 5.766,1.624 0.536,-0.196 1.215,-0.684 1.408,-1.888 0.493,-3.085 1.834,-6.019 3.131,-8.855 1.003,-2.194 1.95,-4.268 2.475,-6.336 1.563,-7.578 -1.177,-11.755 -5.811,-15.724 z m -24.273,-19.052 c 0.579,0.619 1.715,2.038 1.715,3.64 0,0.543 -0.132,1.111 -0.392,1.694 -0.875,-0.142 -1.771,-0.141 -2.649,0 -0.259,-0.581 -0.39,-1.149 -0.39,-1.694 10e-4,-1.602 1.137,-3.021 1.716,-3.64 z m -2.39,6.633 c 0.265,-0.093 0.534,-0.17 0.806,-0.231 0.054,-0.002 0.109,-0.013 0.162,-0.034 0.936,-0.188 1.903,-0.188 2.837,-0.002 0.056,0.023 0.113,0.035 0.171,0.037 0.27,0.061 0.535,0.136 0.797,0.228 1.147,0.421 1.748,1.222 1.916,1.986 -1.408,-0.354 -2.854,-0.532 -4.3,-0.532 -1.445,0 -2.891,0.177 -4.298,0.531 0.168,-0.764 0.767,-1.564 1.909,-1.983 z m -3.103,3.386 c 0.235,-0.083 0.472,-0.16 0.71,-0.231 0.061,-0.007 0.118,-0.024 0.169,-0.05 3.009,-0.871 6.23,-0.87 9.238,0.004 0.046,0.021 0.095,0.036 0.146,0.043 0.241,0.072 0.48,0.15 0.719,0.234 3.727,1.323 5.487,4.355 5.528,6.393 -1.053,-0.798 -2.307,-1.49 -3.77,-2.01 -2.381,-0.838 -4.882,-1.273 -7.432,-1.295 -0.003,0 -0.005,0 -0.008,0 v 0 c -0.002,0.001 -0.006,0 -0.009,0 -2.55,0.022 -5.05,0.458 -7.434,1.296 -1.281,0.455 -2.402,1.043 -3.368,1.718 0.189,-2.028 1.948,-4.837 5.511,-6.102 z m -1.808,5.326 c 2.278,-0.801 4.669,-1.218 7.109,-1.239 2.439,0.021 4.831,0.438 7.107,1.238 4.793,1.702 7.353,5.616 7.403,8.602 0.02,1.144 -0.34,1.976 -0.99,2.315 -1.27,-1.881 -3.208,-3.542 -6.08,-4.562 -2.382,-0.838 -4.884,-1.274 -7.435,-1.296 -0.002,0 -0.003,0 -0.005,0 -0.002,0 -0.004,0 -0.005,0 -2.552,0.022 -5.054,0.458 -7.438,1.296 -2.871,1.02 -4.808,2.68 -6.077,4.562 -0.652,-0.339 -1.011,-1.172 -0.992,-2.316 0.052,-2.985 2.611,-6.898 7.403,-8.6 z m -4.27,28.041 c 0.026,1.244 -6.938,7.28 -10.646,7.615 -1.001,0.092 -1.515,-0.276 -1.661,-1.19 -0.515,-3.22 -1.885,-6.216 -3.209,-9.114 -0.983,-2.152 -1.913,-4.185 -2.405,-6.12 -1.462,-7.101 1.119,-11.026 5.408,-14.706 0.525,-0.368 1.133,-0.531 1.79,-0.531 2.111,0 4.723,1.688 6.667,3.691 -0.046,0.307 -0.071,0.608 -0.076,0.899 -0.025,1.491 0.518,2.655 1.469,3.188 -1.639,2.955 -1.814,6.282 -1.463,8.497 0.583,3.675 2.331,6.054 4.127,7.57 -0.014,0.064 -0.015,0.133 -0.001,0.201 z m 4.482,3.261 c -0.03,0.044 -0.054,0.093 -0.069,0.146 -0.573,1.98 -1.854,2.841 -2.685,3.201 0.592,-2.728 0.322,-4.531 -0.072,-5.633 1.3,0.773 2.429,1.131 2.902,1.259 -0.029,0.348 -0.054,0.691 -0.076,1.027 z m 24.72,6.807 c 0.55,2.237 0.183,4.554 -1.033,6.523 -3.199,5.183 -10.107,6.844 -15.395,3.705 -6.605,-3.919 -8.453,-9.757 -6.817,-21.543 0.038,-0.273 -0.153,-0.525 -0.426,-0.563 -0.023,-0.003 -0.046,-0.005 -0.069,-0.005 -0.246,0 -0.46,0.181 -0.495,0.432 -0.125,0.901 -0.23,1.77 -0.315,2.607 -1.403,-0.408 -6.717,-2.388 -7.791,-9.153 -0.156,-0.987 -1.277,-9.729 7.409,-12.814 2.277,-0.801 4.669,-1.218 7.11,-1.239 2.44,0.021 4.832,0.438 7.107,1.239 8.693,3.087 7.566,11.827 7.409,12.814 -1.07,6.746 -6.407,8.707 -7.961,9.139 -0.081,-0.855 -0.179,-1.757 -0.296,-2.594 -0.039,-0.274 -0.296,-0.46 -0.564,-0.426 -0.273,0.038 -0.464,0.291 -0.426,0.564 0.253,1.815 0.419,3.95 0.504,5.228 -0.96,0.62 -1.799,1.453 -2.434,2.479 -0.895,1.449 -1.164,3.154 -0.76,4.802 0.41,1.667 1.459,3.073 2.953,3.96 2.494,1.481 5.753,0.694 7.268,-1.753 0.598,-0.969 0.777,-2.108 0.507,-3.21 -0.274,-1.114 -0.975,-2.054 -1.973,-2.646 -1.679,-0.998 -3.877,-0.467 -4.896,1.183 -0.145,0.234 -0.072,0.543 0.163,0.688 0.234,0.143 0.543,0.072 0.688,-0.163 0.734,-1.188 2.318,-1.569 3.535,-0.849 0.765,0.455 1.302,1.174 1.511,2.025 0.207,0.839 0.069,1.708 -0.386,2.446 -1.229,1.986 -3.878,2.622 -5.907,1.419 -1.262,-0.749 -2.146,-1.935 -2.491,-3.339 -0.341,-1.385 -0.113,-2.819 0.64,-4.038 0.599,-0.97 1.406,-1.742 2.333,-2.295 0.015,-0.009 0.029,-0.017 0.044,-0.026 2.154,-1.265 4.938,-1.352 7.232,0.011 2.036,1.21 3.465,3.125 4.022,5.392 z m -5.345,-7.051 c -0.697,-0.205 -1.409,-0.312 -2.12,-0.327 0.081,-0.721 0.246,-1.261 0.411,-1.645 0.387,0.623 1.023,1.316 1.709,1.972 z m -2.713,-2.155 c -0.182,0.476 -0.344,1.092 -0.417,1.868 -0.902,0.094 -1.786,0.337 -2.608,0.72 -0.026,-0.371 -0.058,-0.788 -0.095,-1.233 0.549,-0.15 1.759,-0.538 3.12,-1.355 z m 19.539,-9.694 c -0.498,1.958 -1.427,3.991 -2.411,6.145 -1.324,2.897 -2.693,5.893 -3.209,9.112 -0.145,0.912 -0.646,1.28 -1.66,1.19 -3.707,-0.335 -10.672,-6.371 -10.646,-7.603 0.02,-0.095 0.01,-0.191 -0.023,-0.277 1.822,-1.52 3.576,-3.884 4.151,-7.507 0.353,-2.216 0.178,-5.543 -1.462,-8.499 0.95,-0.533 1.493,-1.696 1.468,-3.186 -0.005,-0.292 -0.03,-0.592 -0.076,-0.899 2.549,-2.625 6.24,-4.713 8.418,-3.189 4.325,3.709 6.907,7.634 5.45,14.713 z"/></symbol>
     <!-- prajapati (butterfly) as on Bengali wedding cards -->
     <symbol id="prajapati" viewBox="0 0 64 48">
       <g stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round">
@@ -783,7 +789,7 @@ body.modal-open{overflow:hidden}
       <svg class="paan l" viewBox="0 0 100 140" aria-hidden="true"><defs><linearGradient id="pgl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa548"/><stop offset=".55" stop-color="#4c7a2f"/><stop offset="1" stop-color="#2f5320"/></linearGradient></defs><path d="M50 136C47 126 40 121 30 115C9 102 1 79 6 57C13 31 33 13 50 2C67 13 87 31 94 57C99 79 91 102 70 115C60 121 53 126 50 136Z" fill="url(#pgl)" stroke="#d6b475" stroke-width="1.6"/><g fill="none" stroke="#e8cf92" stroke-width="1" stroke-linecap="round" opacity=".8"><path d="M50 130V10"/><path d="M50 104C38 96 24 86 16 70M50 104C62 96 76 86 84 70M50 78C40 70 30 58 26 44M50 78C60 70 70 58 74 44M50 52C44 44 40 34 40 24M50 52C56 44 60 34 60 24"/></g><circle cx="50" cy="136" r="2.5" fill="#d6b475"/></svg>
       <svg class="paan r" viewBox="0 0 100 140" aria-hidden="true"><defs><linearGradient id="pgr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa548"/><stop offset=".55" stop-color="#4c7a2f"/><stop offset="1" stop-color="#2f5320"/></linearGradient></defs><path d="M50 136C47 126 40 121 30 115C9 102 1 79 6 57C13 31 33 13 50 2C67 13 87 31 94 57C99 79 91 102 70 115C60 121 53 126 50 136Z" fill="url(#pgr)" stroke="#d6b475" stroke-width="1.6"/><g fill="none" stroke="#e8cf92" stroke-width="1" stroke-linecap="round" opacity=".8"><path d="M50 130V10"/><path d="M50 104C38 96 24 86 16 70M50 104C62 96 76 86 84 70M50 78C40 70 30 58 26 44M50 78C60 70 70 58 74 44M50 52C44 44 40 34 40 24M50 52C56 44 60 34 60 24"/></g><circle cx="50" cy="136" r="2.5" fill="#d6b475"/></svg>
       <svg class="seal-ring" viewBox="0 0 214 214" aria-hidden="true"><circle class="trk" cx="107" cy="107" r="98"/><circle cx="107" cy="9" r="2.6" transform="rotate(0 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(15 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(30 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(45 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(60 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(75 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(90 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(105 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(120 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(135 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(150 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(165 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(180 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(195 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(210 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(225 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(240 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(255 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(270 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(285 107 107)"/><circle cx="107" cy="9" r="2.6" transform="rotate(300 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(315 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(330 107 107)"/><circle cx="107" cy="9" r="1.3" transform="rotate(345 107 107)"/></svg>
-      <button class="seal" id="seal" aria-label="Open the invitation"><span id="sealMono"></span><small>OPEN</small></button>
+      <button class="seal" id="seal" aria-label="Open the invitation"><svg class="seal-ganesh" aria-hidden="true"><use href="#ganesh"/></svg><small>OPEN</small></button>
     </div>
     <div class="gate-hint"><span class="bn">খুলতে স্পর্শ করুন</span>Tap to open</div>
     <div class="gate-bottom" id="gateDate"></div>
@@ -1523,16 +1529,18 @@ function doorArt(side){
     <circle cx="150" cy="344" r="6" fill="#e34b5f"/><circle cx="130" cy="356" r="3" fill="#e34b5f"/><circle cx="170" cy="356" r="3" fill="#e34b5f"/>
     <path class="ln" d="M150 284C156 292 156 300 150 304C144 300 144 292 150 284Z"/></g>`;
   // lotus base + shankha / jora maach
-  const lotus = `<g transform="translate(150 568)">
+  const lotus = `<g transform="translate(150 622) scale(.85)">
     <path class="ln" d="M0-30c10 12 10 26 0 34c-10-8-10-22 0-34z"/>
     <path class="ln" d="M-4 4c-10-14-26-18-36-14c4 12 20 18 36 14zM4 4c10-14 26-18 36-14c-4 12-20 18-36 14z"/>
     <path class="ln2" d="M-60 10Q0 24 60 10"/></g>`;
-  const shankha = `<g transform="translate(150 500)">
+  const shankha = `<g transform="translate(150 572) scale(.8)">
     <path class="ln" d="M-34 8C-34-14-6-26 18-18C34-12 38 4 26 14C14 24-14 26-34 8Z"/>
     <path class="ln2" d="M-20 6C-18-6-4-12 8-8C18-4 18 6 10 10C2 14-12 14-20 6"/>
     <path class="ln" d="M26 14L40 22M-34 8L-44 4"/><path class="ln2" d="M-8-20C-4-10 0 0 0 12"/></g>`;
-  const fish = `<g transform="translate(150 500)"><svg x="-40" y="-24" width="80" height="50" viewBox="0 0 64 40" style="color:#d6b475"><use href="#fish"/></svg></g>`;
-  const label = `<text x="150" y="${L ? 466 : 466}" text-anchor="middle" font-family="Galada, cursive" font-size="34" fill="#f0dfb4">${L ? 'বর' : 'কনে'}</text>`;
+  const fish = `<g transform="translate(150 572) scale(.8)"><svg x="-40" y="-24" width="80" height="50" viewBox="0 0 64 40" style="color:#d6b475"><use href="#fish"/></svg></g>`;
+  const label = `<text x="150" y="472" text-anchor="middle" font-family="Galada, cursive" font-size="24" fill="#d6b475" letter-spacing="1">${L ? 'বর' : 'কনে'}</text>
+    <text class="door-name" x="150" y="514" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="46" fill="#f0dfb4">${esc(L ? W.groom : W.bride)}</text>
+    <text x="150" y="538" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="16" fill="#d6b475" letter-spacing="1.5">${esc(L ? W.groomBn : W.brideBn)}</text>`;
   return `<g class="g-top"><g class="toran">${toran}</g></g><g class="g-main"><g class="rose">${rose}</g>${L ? topor : mukut}${label}</g><g class="g-foot">${L ? shankha : fish}${lotus}</g>`;
 }
 $$('.door-art').forEach(el => el.innerHTML = doorArt(el.dataset.side));
@@ -1568,8 +1576,8 @@ function layoutDoorArt(){
     const mTop = uy(hintR.bottom + 16);
     gMain.setAttribute('transform', `translate(0 ${(mTop - 200).toFixed(1)})`);
     // shankha / fish + lotus only if they fit
-    const footTop = mTop + 284, room = H - footTop;
-    if (room > 140){ gFoot.style.display = ''; gFoot.setAttribute('transform', `translate(0 ${(footTop - 470).toFixed(1)})`); }
+    const footTop = mTop + 356, room = H - footTop;
+    if (room > 120){ gFoot.style.display = ''; gFoot.setAttribute('transform', `translate(0 ${(footTop - 548).toFixed(1)})`); }
     else gFoot.style.display = 'none';
   });
 }
@@ -1579,7 +1587,6 @@ addEventListener('resize', layoutDoorArt);
 
 /* ---------- bind content ---------- */
 document.title = `${W.bride} & ${W.groom} — Wedding Invitation`;
-$('#sealMono').innerHTML = monoHTML;
 $('#navMono').innerHTML = `${esc(W.bride[0])}<b>&amp;</b>${esc(W.groom[0])}`;
 $('#gateDate').textContent = EV.map(e => e.dateShort).join('  ·  ');
 
