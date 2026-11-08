@@ -1994,7 +1994,7 @@ $('#navMono').innerHTML = (() => { let petals = '';
   <text x="56" y="67" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="600" font-size="48" fill="url(#monoG)">${esc(W.bride[0])}</text>
   <text x="41" y="62" text-anchor="middle" font-family="Dancing Script, cursive" font-weight="700" font-size="48" fill="#5e0d1b" stroke="#fffaf0" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">${esc(W.groom[0])}</text>
   <path d="M50 80l2.4 3-2.4 3-2.4-3z" fill="#b0823a"/>
-  </svg><span class="mono-txt">${esc(W.groom)} <em>&amp;</em> ${esc(W.bride)}</span>`; })();
+  </svg>`; })();
 (() => { const e = EV.find(x => x.key === 'wedding') || EV[0], [d, m, y] = e.dateShort.split('.');
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
   $('#envNames').innerHTML = `${esc(W.groom)}<i>weds</i>${esc(W.bride)}`;
