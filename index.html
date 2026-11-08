@@ -459,12 +459,13 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .gate.opening .env .seal{transform:scale(1.35) rotate(12deg);opacity:0}
 .gate.opening .gate-hint,.gate.opening .env-top{opacity:0}
 .gate.open .env-flap{transform:rotateX(180deg);z-index:2}
-.env{transition:transform 1.15s cubic-bezier(.65,0,.2,1)}
+.env{transition:left 1s cubic-bezier(.7,0,.2,1),top 1s cubic-bezier(.7,0,.2,1),width 1s cubic-bezier(.7,0,.2,1),height 1s cubic-bezier(.7,0,.2,1),filter .4s}
 .env-fig{transition:transform .7s ease,opacity .6s ease}
-.gate.zoom .env{transform:translate(var(--tx),var(--ty)) scale(var(--sc));filter:none}
+.gate.opening .env{filter:none}
+.gate.zoom .env-back,.gate.zoom .env-flap,.gate.zoom .env-deco{border-radius:0}
 .gate.zoom .env-fig.g{transform:translateX(-60px);opacity:0}
 .gate.zoom .env-fig.b{transform:translateX(60px);opacity:0}
-.gate.zoom .env-top,.gate.zoom .gate-hint{opacity:0}
+.gate.opening .env-fig,.gate.opening .env-top,.gate.opening .gate-hint{opacity:0}
 /* unwrap: four flaps fold outward, the site shows through */
 .ef{position:absolute;inset:0;z-index:4;backface-visibility:visible;transition:transform 1s cubic-bezier(.55,0,.25,1)}
 .ef svg{position:absolute;inset:0;width:100%;height:100%}
@@ -479,7 +480,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .env .seal{z-index:8}
 .env-bg,.env-alp,.env-flora.c-tl,.env-flora.c-br,.env-petals{transition:opacity .9s ease}
 .gate.env-gate{transition:background-color .9s ease,opacity .6s ease,visibility 0s .6s}
-.gate.open .env-deco{opacity:0}
+.gate.opening .env-deco{opacity:0}
 .gate.open .env-flap{transform:rotateX(180deg);transition:transform 1s cubic-bezier(.55,0,.25,1)}
 .gate.open .ef-l{transform:rotateY(-180deg);transition-delay:.12s}
 .gate.open .ef-r{transform:rotateY(180deg);transition-delay:.12s}
@@ -2103,15 +2104,15 @@ function openGate(){
   burst(r.left + r.width/2, r.top + r.height/2, {n:40, spread:260, size:[8,18], shapes:['petal','spark','petal','dot'], gravity:120, dur:1800});
   const env = $('#env');
   if (env){
-    // grow the envelope until it fills the screen, open the flap, then let it fall away to reveal the site
-    const r = env.getBoundingClientRect();
-    env.style.setProperty('--sc', (Math.max(innerWidth / r.width, innerHeight / r.height) * 1.04).toFixed(3));
-    env.style.setProperty('--tx', (innerWidth / 2 - (r.left + r.width / 2)).toFixed(1) + 'px');
-    env.style.setProperty('--ty', (innerHeight / 2 - (r.top + r.height / 2)).toFixed(1) + 'px');
-    setTimeout(() => gate.classList.add('zoom'), 250);
-    setTimeout(() => gate.classList.add('open'), 1450);
-    setTimeout(() => document.body.classList.add('started'), 1750);
-    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2900);
+    // the envelope frame itself grows to exactly fill the screen (no scaling, so lines stay crisp)
+    const r = env.getBoundingClientRect(), ph = document.createElement('div');
+    ph.style.cssText = `width:${r.width}px;height:${r.height}px;align-self:center`; env.parentNode.insertBefore(ph, env);
+    Object.assign(env.style, {position:'fixed', left:r.left + 'px', top:r.top + 'px', width:r.width + 'px', height:r.height + 'px', margin:'0', aspectRatio:'auto', zIndex:'5'});
+    env.getBoundingClientRect();
+    setTimeout(() => { gate.classList.add('zoom'); const G = gate.getBoundingClientRect(); Object.assign(env.style, {left:'0px', top:'0px', width:G.width + 'px', height:G.height + 'px'}); }, 320);
+    setTimeout(() => gate.classList.add('open'), 1400);
+    setTimeout(() => document.body.classList.add('started'), 1700);
+    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2800);
     return;
   }
   setTimeout(() => gate.classList.add('open'), 550);
