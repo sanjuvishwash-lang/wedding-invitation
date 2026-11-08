@@ -682,7 +682,6 @@ body.modal-open{overflow:hidden}
     <a href="#top" class="mono" id="navMono"></a>
     <nav class="nav-links">
       <a href="#events">Events</a>
-      <a href="#venue">Venue</a>
       <a href="#rsvp" class="btn btn-solid nav-cta">RSVP</a>
       <button class="burger" id="burger" aria-label="Open menu"><span></span></button>
     </nav>
@@ -693,9 +692,8 @@ body.modal-open{overflow:hidden}
 <div class="menu" id="menu" aria-hidden="true">
   <button class="close" id="menuClose" aria-label="Close menu">&times;</button>
   <a href="#events"><span>01</span>Events</a>
-  <a href="#venue"><span>02</span>Venue</a>
-  <a href="#gallery"><span>03</span>Gallery</a>
-  <a href="#rsvp"><span>04</span>RSVP</a>
+  <a href="#gallery"><span>02</span>Gallery</a>
+  <a href="#rsvp"><span>03</span>RSVP</a>
 </div>
 
 <main id="top">
@@ -772,21 +770,6 @@ body.modal-open{overflow:hidden}
         <p class="rv">The Biye on the first night and the Bou Bhaat two days later — we would be honoured to have you with us for both.</p>
       </div>
       <div class="tickets" id="tickets"></div>
-    </div>
-  </section>
-
-  <!-- ======================= VENUE ======================= -->
-  <section class="venue" id="venue">
-    <div class="container">
-      <div class="sec-head" style="margin-bottom:34px">
-        <div class="eyebrow rv"><span class="bn-title">ঠিকানা</span>Finding your way</div>
-        <h2 class="h2 rv">The <em>Venues</em></h2>
-      </div>
-      <div style="text-align:center" class="rv"><div class="tabs" id="tabs"></div></div>
-      <div class="map-wrap rv">
-        <iframe id="map" title="Venue map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="map-card" id="mapCard"></div>
-      </div>
     </div>
   </section>
 
@@ -1458,18 +1441,6 @@ $('#tickets').innerHTML = EV.map((e,i) => `
   </article>`).join('');
 $('#tickets').addEventListener('click', ev => { const b = ev.target.closest('[data-cal]'); if (b) addToCalendar(EV[+b.dataset.cal]); });
 
-/* venue tabs + map */
-function showVenue(i){
-  const e = EV[i];
-  $$('#tabs button').forEach((b,k) => b.classList.toggle('on', k === i));
-  $('#map').src = `https://maps.google.com/maps?q=${encodeURIComponent(`${e.venue}, ${e.address}`)}&z=15&output=embed`;
-  $('#mapCard').innerHTML = `<div class="script">${esc(e.title)}</div><h4>${esc(e.venue)}</h4><p>${esc(e.address)}</p><p>${esc(e.day)}, ${esc(e.date)} · ${esc(e.time)}</p>
-    <a class="btn btn-solid" href="${esc(mapsUrl(e))}" target="_blank" rel="noopener">${IC.nav}Get directions</a>`;
-}
-$('#tabs').innerHTML = EV.map(e => `<button>${esc(e.title.replace(/^The /,''))}</button>`).join('');
-$$('#tabs button').forEach((b,i) => b.addEventListener('click', () => showVenue(i)));
-showVenue(0);
-
 /* gallery */
 const RATIOS = ['3/4','1/1','4/5','4/3','3/4','1/1'];
 $('#galleryGrid').innerHTML = W.photos.gallery.map((src,i) => `<div class="g-item rv" style="--d:${(i%3)*.1}s"><div class="ph" style="aspect-ratio:${RATIOS[i % RATIOS.length]}"></div></div>`).join('');
@@ -1547,7 +1518,7 @@ $('#shareBtn').addEventListener('click', async () => {
 
 /* ---------- nav, progress, parallax, menu ---------- */
 const nav = $('#nav'), prog = $('#progress'), heroPh = $('#heroPhoto');
-const sections = ['events','venue','rsvp'].map(id => document.getElementById(id));
+const sections = ['events','gallery','rsvp'].map(id => document.getElementById(id));
 function onScroll(){
   const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
   nav.classList.toggle('scrolled', y > 40);
