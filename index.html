@@ -586,6 +586,16 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .env .seal-ganesh{--gf:#a3142a;--gt:#f3dc9c;width:62%!important;height:66%!important}
 .v5-med .v5-gan{--gf:#6e1428;--gt:#f3dc9c;width:44px!important;height:48px!important}
 
+
+/* RSVP side panel */
+.rs-eye{display:flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold-2)}
+.rs-eye i{width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2))}
+.rs-eye i:last-child{transform:scaleX(-1)}
+.rs-h{font-family:var(--serif);font-weight:400;color:#fff6e4;font-size:clamp(42px,4.6vw,60px);line-height:1;margin:18px 0 0}
+.rs-h em{display:inline-block;font-family:var(--script);font-style:normal;font-weight:600;color:var(--gold-2);font-size:1.18em;line-height:1.1;margin-top:4px}
+.rs-bn{font-family:'Tiro Bangla',serif;font-size:22px;color:rgba(240,223,180,.9);margin-top:10px}
+.rsvp-side p{line-height:1.65}
+
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
 .ph-empty{
@@ -798,7 +808,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .rsvp-side .h2 em{color:var(--gold-2)}
 .rsvp-side p{margin-top:20px;color:rgba(240,223,180,.85);font-size:15.5px;max-width:340px}
 .rsvp-side .by{margin-top:30px;display:inline-block;padding:14px 22px;border:1px solid rgba(214,180,117,.5);border-radius:999px;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;align-self:flex-start}
-.rsvp-side .bot{right:-40px;bottom:-30px;width:260px;color:var(--gold-2);opacity:.6;transform:rotate(180deg)}
+.rsvp-side .bot{right:-60px;bottom:-60px;width:230px;color:var(--gold-2);opacity:.35;transform:rotate(180deg)}
 .rsvp-form{background:var(--paper);padding:54px 44px}
 @media (max-width:600px){.rsvp-side,.rsvp-form{padding:44px 24px}}
 .fld{margin-bottom:26px}
@@ -1357,9 +1367,9 @@ body.modal-open{overflow:hidden}
       <div class="rsvp-grid rv">
         <div class="rsvp-side">
           <svg class="bot" viewBox="0 0 200 200" data-branch="3"></svg>
-          <div class="eyebrow" style="color:var(--gold-2)"><span class="bn-title">আসছেন তো?</span>RSVP</div>
-          <h2 class="h2" style="margin-top:14px">Will you <em>join us?</em></h2>
-          <p>Your presence would make our celebration complete. Tap your answer — we have a feeling we know what it'll be.</p>
+          <div class="rs-eye"><i></i>Kindly RSVP<i></i></div>
+          <h2 class="rs-h">Bless us with<br><em>your presence</em></h2>
+          <p>Your love and blessings would make our celebration complete. Kindly let us know whether you will be joining us.</p>
         </div>
         <div class="rsvp-ask" id="askZone">
           <div class="ask-q">
