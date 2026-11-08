@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#5e0d1b">
-<title>Wedding Invitation</title>
+<title>Mousumi &amp; Sanju — Wedding Invitation</title>
 <meta name="description" content="You are cordially invited to our wedding.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1033,13 +1033,13 @@ body.modal-open{overflow:hidden}
    ✏️  EDIT YOUR WEDDING DETAILS HERE
    ===================================================================== */
 const W = {
-  bride: "Ananya",
-  groom: "Arjun",
-  brideBn: "অনন্যা",                    // names in Bengali script
-  groomBn: "অর্জুন",
+  bride: "Mousumi",
+  groom: "Sanju",
+  brideBn: "মৌসুমী",                    // names in Bengali script
+  groomBn: "সঞ্জু",
   tagline: "invite you to celebrate their wedding",
   taglineBn: "শুভ পরিণয়ে আপনার সাদর আমন্ত্রণ",
-  hashtag: "#AnanyaWedsArjun",
+  hashtag: "#MousumiWedsSanju",
   city: "Your City, Country",
 
   // Rabindranath Tagore — “Anonto Prem” (Unending Love)
@@ -1534,7 +1534,7 @@ function doorArt(side){
     <path class="ln2" d="M62 468H238"/>`;
   const label = `<text x="150" y="30" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="22" fill="#d6b475" letter-spacing="1">${L ? 'বর' : 'কনে'}</text>
     <text class="door-name" x="150" y="74" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="48" fill="#f0dfb4">${esc(L ? W.groom : W.bride)}</text>
-    <text x="150" y="97" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="16" fill="#d6b475" letter-spacing="1.5">${esc(L ? W.groomBn : W.brideBn)}</text>`;
+    <text x="150" y="106" text-anchor="middle" font-family="Tiro Bangla, serif" font-size="16" fill="#d6b475" letter-spacing="1.5">${esc(L ? W.groomBn : W.brideBn)}</text>`;
   return `<g class="g-top"></g><g class="g-main"><g class="g-stage">${niche}<g class="toran">${toran}</g>${figure(L)}</g><g class="g-name">${label}</g></g><g class="g-foot"></g>`;
 }
 $$('.door-art').forEach(el => el.innerHTML = doorArt(el.dataset.side));
