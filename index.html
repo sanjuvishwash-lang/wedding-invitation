@@ -517,6 +517,20 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .v5-lock small i{width:5px;height:5px;background:#c99b52;transform:rotate(45deg)}
 @media (max-width:980px){.v5-eye{flex-direction:column;gap:14px!important}.v5-lock{padding-left:0;border-left:0;align-items:center}}
 
+
+/* highlighted date card */
+.v5-when{position:relative;display:inline-flex!important;align-items:center;gap:20px!important;margin-top:30px!important;padding:18px 30px 18px 18px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(250,238,220,.85));
+  box-shadow:0 0 0 1px #c99b52,inset 0 0 0 5px rgba(255,252,246,.9),inset 0 0 0 6px rgba(201,155,82,.4),0 18px 40px rgba(94,13,27,.12)}
+.v5-when::before{content:"Save the Date";position:absolute;left:24px;top:0;translate:0 -50%;padding:3px 12px;border-radius:999px;background:#5e0d1b;color:#f6e7c1;
+  font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.3em;text-transform:uppercase;box-shadow:0 0 0 3px #fbf6ef}
+.v5-when b{display:grid!important;place-items:center;width:92px;height:92px;flex:none;padding:0!important;border:0!important;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#8c1a30,#4a0915 75%);color:#f3dc9c!important;font-size:50px!important;line-height:1!important;
+  box-shadow:0 0 0 2px #c99b52,0 0 0 6px #fbf6ef,0 0 0 7px rgba(201,155,82,.55),0 10px 20px rgba(94,13,27,.25)}
+.v5-when strong{font-size:26px!important;letter-spacing:.18em!important}
+.v5-when em{font-size:16px!important;margin-top:6px!important;color:#7a5a3e!important}
+@media (max-width:980px){.v5-when{padding:16px 22px 16px 14px;gap:16px!important}.v5-when::before{left:50%;translate:-50% -50%}.v5-when b{width:78px;height:78px;font-size:42px!important}.v5-when strong{font-size:21px!important}}
+
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
 .ph-empty{
@@ -1177,10 +1191,6 @@ body.modal-open{overflow:hidden}
         <h1 class="v5-names r4" style="--d:.25s"><span class="n1" id="nmG"></span><em><i></i>weds<i></i></em><span class="n2" id="nmB"></span></h1>
         <p class="v5-inv r4" style="--d:.5s" id="tagline"></p>
         <div class="v5-when r4" style="--d:.6s" id="heroDate"></div>
-        <div class="hero-cta r4" style="--d:.8s">
-          <a href="#rsvp" class="btn btn-solid">Kindly RSVP</a>
-          <a href="#events" class="btn btn-ghost">View Events</a>
-        </div>
       </div>
       <div class="v5-stage r4" style="--d:.2s" aria-hidden="true">
         <svg class="v5-ring" viewBox="0 0 400 400" data-alpana="5"></svg>
