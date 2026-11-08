@@ -598,6 +598,24 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 
 [hidden]{display:none!important}
 
+
+/* Ganesha with lotus-mandala halo */
+.gan-halo{position:relative;display:grid;place-items:center;width:150px;height:150px;margin:0 auto;flex:none}
+.gan-halo::before{content:"";position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle,rgba(255,206,120,.65) 0%,rgba(255,214,140,.25) 45%,rgba(255,214,140,0) 70%);animation:ghalo 3.6s ease-in-out infinite}
+@keyframes ghalo{50%{transform:scale(1.08);opacity:.7}}
+.gan-halo .gan-mand{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:none}
+.gan-halo .gan-mand .disc{fill:rgba(255,248,232,.85)}
+.gan-halo .gan-mand .rim{stroke:#c99b52}
+.gan-halo .gan-mand .rim2{stroke:rgba(176,130,58,.45)}
+.gan-img{position:relative;width:74%;height:auto;margin-top:-4%;filter:drop-shadow(0 8px 10px rgba(94,13,27,.28));animation:gfloat 4.2s ease-in-out infinite}
+@keyframes gfloat{50%{transform:translateY(-5px)}}
+.gan-halo.gh-gate{width:clamp(118px,11vw,150px);height:clamp(118px,11vw,150px);margin-bottom:4px}
+.gan-halo.gh-hero{width:128px;height:128px;margin:0}
+.gan-halo.gh-inv{width:128px;height:128px;margin-bottom:6px}
+.v5-eye .gan-halo.gh-hero .gan-img{width:76%}
+@media (max-width:980px){.gan-halo.gh-hero{width:118px;height:118px}}
+@media (prefers-reduced-motion: reduce){.gan-img,.gan-halo::before{animation:none}}
+
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
 .ph-empty{
@@ -906,7 +924,7 @@ footer .bot.r{right:-60px;bottom:10px;width:300px;transform:rotate(180deg)}
 .rsvp-form{outline:1.5px dashed rgba(123,23,41,.22);outline-offset:-14px}
 footer .praj{margin:0 0 26px}
 footer .praj svg.praj-gan{width:46px;height:52px;color:var(--gold);animation:none}
-.praj .bn{color:var(--gold-3)}
+footer .praj .bn{color:var(--gold-3)}
 footer .fbn{font-family:'Tiro Bangla',serif;font-size:clamp(30px,5vw,44px);color:var(--gold-2);margin-top:10px}
 footer .bless{margin-top:22px;font-family:'Tiro Bangla',serif;font-size:19px;color:var(--gold-3)}
 footer .bless small{display:block;font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(240,223,180,.65);margin-top:2px}
@@ -1233,7 +1251,7 @@ body.modal-open{overflow:hidden}
   <div class="env-petals" id="envPetals" aria-hidden="true"></div>
   <div class="env-wrap">
     <div class="env-top">
-      <svg class="env-gan" aria-hidden="true"><use href="#ganesh"/></svg>
+      <div class="gan-halo gh-gate" aria-hidden="true"><svg class="v5-mand gan-mand" viewBox="-62 -62 124 124" data-mand></svg><img class="gan-img" src="ganesha.png" alt="" decoding="async"></div>
       <div class="env-sh">॥ শ্রী শ্রী গণেশায় নমঃ ॥</div>
       <div class="gate-bn">শুভ বিবাহ</div>
     </div>
@@ -1288,7 +1306,7 @@ body.modal-open{overflow:hidden}
     <div class="container v5">
       <div class="v5-text">
         <div class="v5-eye r4" style="--d:.1s">
-          <span class="v5-med" aria-hidden="true"><svg class="v5-mand" id="v5Mand" viewBox="-62 -62 124 124"></svg><svg class="v5-gan"><use href="#ganesh"/></svg></span>
+          <div class="gan-halo gh-hero" aria-hidden="true"><svg class="v5-mand gan-mand" viewBox="-62 -62 124 124" data-mand></svg><img class="gan-img" src="ganesha.png" alt="" decoding="async"></div>
           <span class="v5-lock">
             <svg class="v5-swag" id="v5Swag" viewBox="-1 0 222 26" aria-hidden="true"></svg>
             <span class="bn">শুভ বিবাহ</span>
@@ -1319,7 +1337,7 @@ body.modal-open{overflow:hidden}
   <section class="invite" style="overflow:hidden">
     <svg class="alpana-bg" viewBox="0 0 400 400" data-alpana="1" aria-hidden="true"></svg>
     <div class="container" style="position:relative">
-      <div class="praj rv"><svg class="praj-gan" aria-hidden="true"><use href="#ganesh"/></svg><div class="bn">॥ শ্রী শ্রী গণেশায় নমঃ ॥</div></div>
+      <div class="praj rv"><div class="gan-halo gh-inv" aria-hidden="true"><svg class="v5-mand gan-mand" viewBox="-62 -62 124 124" data-mand></svg><img class="gan-img" src="ganesha.png" alt="" decoding="async"></div><div class="bn">॥ শ্রী শ্রী গণেশায় নমঃ ॥</div></div>
       <div class="eyebrow rv"><span class="bn-title">আমন্ত্রণ</span>The Invitation</div>
       <p class="msg rv" id="message"></p>
       <svg class="orn rv"><use href="#orn"/></svg>
@@ -2022,12 +2040,12 @@ $('#navMono').innerHTML = `${esc(W.groom[0])}<b>&amp;</b>${esc(W.bride[0])}`;
     st += `<g class="v5-s" style="transform-origin:${x}px 0;animation-delay:${(-i * .7).toFixed(1)}s"><path d="M${x} 0V${len}" stroke="#c9a04c" stroke-width=".35"/>${bd}<path d="M${x} ${len + 1}l-1 3.4M${x} ${len + 1}l1 3.4" stroke="#e34b5f" stroke-width=".7"/></g>`; });
   $('#v5Str').innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMin slice">${st}</svg>`;
   // lotus mandala behind the Ganesh + marigold swag over শুভ বিবাহ
-  (() => { const m = $('#v5Mand'); if (m){ let o = '<g class="ring-o">';
+  (() => { $$('[data-mand]').forEach(m => { let o = '<g class="ring-o">';
       for (let i = 0; i < 16; i++) o += `<path transform="rotate(${i * 22.5})" d="M0 -40C7 -46 7 -54 0 -60C-7 -54 -7 -46 0 -40Z"/>`;
       o += '</g><g class="ring-i">';
       for (let i = 0; i < 8; i++) o += `<path transform="rotate(${i * 45 + 22.5})" d="M0 -29C9 -35 9 -45 0 -50C-9 -45 -9 -35 0 -29Z" class="pf"/>`;
-      o += '</g><circle r="56" class="dots"/><circle r="30" class="disc"/><circle r="30" class="rim"/><circle r="26" class="rim2"/>';
-      m.innerHTML = o; }
+      o += '</g><circle r="56" class="dots"/><circle r="34" class="disc"/><circle r="34" class="rim"/><circle r="30" class="rim2"/>';
+      m.innerHTML = o; });
     const g = $('#v5Swag'); if (g){ let o = '<path d="M2 3H218" class="cord"/>';
       [[2, 74], [74, 146], [146, 218]].forEach(([x0, x1], k) => { for (let t = 0, j = 0; t <= 1.0001; t += 1 / 9, j++){
         const x = x0 + (x1 - x0) * t, y = 3 + 4 * (k === 1 ? 13 : 10) * t * (1 - t);
