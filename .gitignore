@@ -1,2 +1,4 @@
 classic.html
 .DS_Store
+.vercel
+.env*
