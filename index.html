@@ -419,8 +419,8 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .invite .msg{max-width:600px;margin:28px auto 0;font-size:17px;color:#4a3a3d}
 .parents{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;max-width:720px;margin:56px auto 0}
 .parents .p{font-family:var(--serif);font-size:20px;color:var(--ink);line-height:1.35}
-.parents .p small{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.parents .p strong{display:block;font-family:var(--serif);font-weight:500;font-size:30px;color:var(--wine);margin-bottom:4px}
+.parents .p small{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:2px 0 6px}
+.parents .p strong{display:block;font-family:var(--serif);font-weight:500;font-size:30px;color:var(--wine);margin-bottom:6px}
 .parents .and{font-family:var(--script);font-size:46px;color:var(--gold)}
 @media (max-width:600px){.parents{grid-template-columns:1fr;gap:6px}.parents .and{font-size:36px}}
 
@@ -1783,9 +1783,9 @@ $('#quote').textContent = W.quote;
 $('#quoteBy').textContent = '— ' + W.quoteBy;
 $('#message').textContent = W.message;
 $('#parents').innerHTML = `
-  <div class="p rv"><small>${esc(W.parents.groom.relation)}</small><strong>${esc(W.groom)}</strong>${esc(W.parents.groom.names)}</div>
+  <div class="p rv"><strong>${esc(W.groom)}</strong><small>${esc(W.parents.groom.relation)}</small>${esc(W.parents.groom.names)}</div>
   <div class="and rv">&amp;</div>
-  <div class="p rv"><small>${esc(W.parents.bride.relation)}</small><strong>${esc(W.bride)}</strong>${esc(W.parents.bride.names)}</div>`;
+  <div class="p rv"><strong>${esc(W.bride)}</strong><small>${esc(W.parents.bride.relation)}</small>${esc(W.parents.bride.names)}</div>`;
 
 $('#until').textContent = `until the Shubho Drishti · ${EV[0].day}, ${EV[0].date}`;
 
