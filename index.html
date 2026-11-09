@@ -741,13 +741,20 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
   .fg-door.l .fg-panel{left:34px}.fg-door.r .fg-panel{right:34px}
   .fg-door::after{width:16px;background-size:16px 16px,auto}
   .fg-nm{top:36%;bottom:auto;left:auto;translate:none}
-  .fg-door.l .fg-nm{right:16px;text-align:right}.fg-door.r .fg-nm{left:16px;text-align:left}
+  .fg-door.l .fg-nm{right:30px;text-align:right}.fg-door.r .fg-nm{left:30px;text-align:left}
   .fg-nm b{font-size:30px}.fg-nm small{font-size:14px}
   .fg-toran{height:70px}
   .fg-ui{padding:66px 12px 22px}
   .fg-gate .gate-hint{font-size:22px;margin-top:16px}
   .fg-door .env-flora{width:52vw}
 }
+
+
+.fg-weds{position:absolute;left:50%;translate:-50% 0;z-index:6;bottom:calc(40px + min(480px,52vh) + 12px);padding:2px 16px 6px;border-radius:999px;
+  font-family:var(--script);font-weight:600;font-size:clamp(24px,2.2vw,32px);line-height:1;color:#e2b45c;
+  background:radial-gradient(ellipse,rgba(52,5,14,.95) 30%,rgba(52,5,14,0) 75%);text-shadow:0 2px 8px rgba(0,0,0,.4);transition:opacity .4s}
+.gate.fg-gate.opening .fg-weds{opacity:0}
+@media (max-width:860px){.fg-weds{bottom:auto;top:calc(36% + 26px);font-size:20px;padding:2px 10px 5px}}
 
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
@@ -1357,6 +1364,7 @@ body.modal-open{overflow:hidden}
     <div class="fg-nm"><small>কনে</small><b id="gwB"></b></div>
     <figure class="fg-fig" id="envB" aria-hidden="true"></figure>
   </div>
+  <div class="fg-weds" aria-hidden="true">weds</div>
   <div class="fg-toran" id="fgToran" aria-hidden="true"></div>
   <div class="env-petals" id="envPetals" aria-hidden="true"></div>
   <div class="fg-ui">
