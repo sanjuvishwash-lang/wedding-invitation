@@ -672,8 +672,8 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 
 
 /* ===== GATE v5 — full-screen palace doors ===== */
-.gate.fg-gate{display:block;perspective:2400px;overflow:hidden;background:#2a040c}
-.fg-light{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 55%,#fffaf0 0%,#ffe2a6 28%,#f0ad5f 58%,#a3442f 100%);opacity:.9}
+.gate.fg-gate{display:block;perspective:2400px;overflow:hidden;background:transparent}
+.fg-light{display:none}
 .fg-door{position:absolute;top:0;bottom:0;width:50.2%;overflow:hidden;transition:transform 1.8s cubic-bezier(.62,0,.2,1);
   background:
     radial-gradient(circle,rgba(214,180,117,.5) 0 1.6px,transparent 2.2px) 0 0/30px 30px,
@@ -2399,9 +2399,9 @@ function openGate(){
   const r = $('#seal').getBoundingClientRect();
   burst(r.left + r.width/2, r.top + r.height/2, {n:40, spread:260, size:[8,18], shapes:['petal','spark','petal','dot'], gravity:120, dur:1800});
   if (gate.classList.contains('fg-gate')){
-    setTimeout(() => gate.classList.add('open'), 380);
-    setTimeout(() => document.body.classList.add('started'), 1300);
-    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2400);
+    setTimeout(() => { gate.classList.add('open'); document.body.classList.add('started'); }, 380);
+    setTimeout(() => { document.body.classList.remove('locked'); onScroll(); }, 900);
+    setTimeout(() => gate.classList.add('gone'), 2200);
     return;
   }
   setTimeout(() => gate.classList.add('open'), 550);
