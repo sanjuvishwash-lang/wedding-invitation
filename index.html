@@ -444,19 +444,19 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .env-flap svg{position:absolute;inset:0;width:100%;height:100%}
 .env-flap path{fill:none;stroke:#d6b475;stroke-width:1.4}
 .env-flap path.in{stroke:rgba(214,180,117,.5);stroke-width:1;stroke-dasharray:3 4}
-.env .seal{position:absolute;left:50%;top:50%;width:clamp(84px,9vw,112px);height:clamp(84px,9vw,112px);margin:calc(clamp(84px,9vw,112px)/-2) 0 0 calc(clamp(84px,9vw,112px)/-2);z-index:6;
+.env .seal,.gw .seal{position:absolute;left:50%;top:50%;width:clamp(84px,9vw,112px);height:clamp(84px,9vw,112px);margin:calc(clamp(84px,9vw,112px)/-2) 0 0 calc(clamp(84px,9vw,112px)/-2);z-index:6;
   border:0;border-radius:47% 53% 50% 50% / 52% 48% 52% 48%;
   background:radial-gradient(circle at 36% 30%,#d8455a,#a3142a 45%,#6e0716 85%);
   box-shadow:inset 0 0 0 5px rgba(110,7,22,.55),inset 0 0 0 7px rgba(255,190,190,.18),inset -6px -8px 14px rgba(0,0,0,.25),0 8px 18px rgba(60,0,10,.45);
   cursor:pointer;transition:transform .45s var(--ease),opacity .45s}
-.env .seal::before{inset:12px;border:1px dashed rgba(255,215,190,.45)}
-.env .seal::after{inset:-8px;border-color:#d6b475}
-.env .seal:hover{transform:scale(1.06) rotate(-4deg)}
-.env .seal-ganesh{width:52%;height:56%;margin:0;color:#f3dc9c;filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))}
-.env-gate .gate-hint{margin-top:20px;font-family:var(--script);font-size:26px;color:var(--wine);text-align:center;transition:opacity .4s}
+.env .seal::before,.gw .seal::before{inset:12px;border:1px dashed rgba(255,215,190,.45)}
+.env .seal::after,.gw .seal::after{inset:-8px;border-color:#d6b475}
+.env .seal:hover,.gw .seal:hover{transform:scale(1.06) rotate(-4deg)}
+.env .seal-ganesh,.gw .seal-ganesh{width:52%;height:56%;margin:0;color:#f3dc9c;filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))}
+.env-gate .gate-hint{margin-top:34px;font-family:var(--script);font-size:26px;color:var(--wine);text-align:center;transition:opacity .4s}
 .env-gate .gate-hint .bn{font-size:14px;color:#a77a35}
 /* opening sequence */
-.gate.opening .env .seal{transform:scale(1.35) rotate(12deg);opacity:0}
+.gate.opening .env .seal,.gate.opening .gw .seal{transform:scale(1.35) rotate(12deg);opacity:0}
 .gate.opening .gate-hint,.gate.opening .env-top{opacity:0}
 .gate.open .env-flap{transform:rotateX(180deg);z-index:2}
 .env{transition:left 1s cubic-bezier(.7,0,.2,1),top 1s cubic-bezier(.7,0,.2,1),width 1s cubic-bezier(.7,0,.2,1),height 1s cubic-bezier(.7,0,.2,1),filter .4s}
@@ -477,7 +477,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .env-deco{position:absolute;inset:0;z-index:7;pointer-events:none;border-radius:10px;overflow:hidden;transition:opacity .35s ease}
 .env-deco .env-flora{position:absolute;width:38%;stroke:#d6b475;opacity:.85}
 .env-deco .env-flora .dot{fill:#d6b475}
-.env .seal{z-index:8}
+.env .seal,.gw .seal{z-index:8}
 .env-bg,.env-alp,.env-flora.c-tl,.env-flora.c-br,.env-petals{transition:opacity .9s ease}
 .gate.env-gate{transition:background-color .9s ease,opacity .6s ease,visibility 0s .6s}
 .gate.opening .env-deco{opacity:0}
@@ -486,9 +486,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .gate.open .ef-r{transform:rotateY(180deg);transition-delay:.12s}
 .gate.open .ef-b{transform:rotateX(-180deg);transition-delay:.24s}
 .env-back{transition:opacity .7s ease}
-.gate.open .env-back{opacity:0;transition-delay:.35s}
-.gate.open.env-gate{background-color:transparent;transition-delay:.35s}
-.gate.open .env-bg,.gate.open .env-alp,.gate.open .env-flora.c-tl,.gate.open .env-flora.c-br,.gate.open .env-petals{opacity:0}
+
 @media (max-width:860px){
   .env-scene{grid-template-columns:1fr 1fr;grid-template-areas:"e e" "g b";gap:14px 4px;justify-items:center}
   .env{grid-area:e;width:min(440px,92vw);aspect-ratio:1.3}
@@ -498,7 +496,7 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
   .env-names{top:67%}
   .env-date{gap:8px;padding:6px 14px;font-size:9px;letter-spacing:.16em}
   .env-deco .env-flora{width:46%}
-  .env-gate .gate-hint{margin-top:12px;font-size:22px}
+  .env-gate .gate-hint{margin-top:30px;font-size:22px}
   .env-sh{font-size:12.5px}
 }
 @media (prefers-reduced-motion: reduce){.env-alp,.env-petals i{animation:none}}
@@ -625,6 +623,52 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 .mono-txt{font-family:var(--script);font-weight:600;font-size:22px;color:var(--wine);white-space:nowrap}
 .mono-txt em{font-style:normal;color:var(--gold);font-size:.8em}
 @media (max-width:600px){.mono-txt{display:none}.mono-svg{width:48px;height:48px}}
+
+
+/* ===== GATE v4 — palace gateway ===== */
+.gw{position:relative;height:min(540px,56vh);aspect-ratio:.8;align-self:end;z-index:2}
+.gw-frame{position:absolute;inset:-16px;border-radius:50% 50% 10px 10px / 36% 36% 10px 10px;
+  background:linear-gradient(135deg,#9a6c28,#f3dc9c 28%,#c99b52 50%,#f0d48e 72%,#9a6c28);
+  box-shadow:inset 0 0 0 2px rgba(255,248,225,.55),inset 0 0 0 7px rgba(122,85,32,.35),0 34px 60px rgba(94,13,27,.28)}
+.gw-frame::after{content:"";position:absolute;inset:-12px;border-radius:inherit;border:1px dashed rgba(176,130,58,.55)}
+.gw-in{position:absolute;inset:0;border-radius:50% 50% 4px 4px / 36% 36% 4px 4px;overflow:hidden;perspective:1500px;
+  background:radial-gradient(ellipse at 50% 58%,#fffaf0 0%,#ffe2a6 30%,#f0ad5f 62%,#b3532f 100%)}
+.gw-light{position:absolute;left:50%;top:58%;width:40%;aspect-ratio:1;border-radius:50%;translate:-50% -50%;background:radial-gradient(circle,#fff 0%,rgba(255,240,200,.8) 35%,rgba(255,220,150,0) 70%);transition:transform 1.4s ease .3s;opacity:.9}
+.gw-door{position:absolute;top:0;bottom:0;width:50%;transition:transform 1.5s cubic-bezier(.6,0,.2,1);backface-visibility:visible;
+  background:
+    radial-gradient(circle,rgba(214,180,117,.55) 0 1.4px,transparent 2px) 13px 13px/26px 26px,
+    linear-gradient(180deg,#741528,#560b1b 60%,#470915)}
+.gw-door.l{left:0;transform-origin:0 50%;box-shadow:inset -2px 0 0 rgba(240,215,150,.75),inset 0 0 40px rgba(0,0,0,.25)}
+.gw-door.r{right:0;transform-origin:100% 50%;box-shadow:inset 2px 0 0 rgba(240,215,150,.75),inset 0 0 40px rgba(0,0,0,.25)}
+.gw-door::before{content:"";position:absolute;top:16%;bottom:14px;border:1px solid rgba(214,180,117,.6);border-radius:6px}
+.gw-door.l::before{left:14px;right:10px}.gw-door.r::before{left:10px;right:14px}
+.gw-door .env-flora{position:absolute;width:78%;bottom:-6%;stroke:#d6b475;opacity:.75}
+.gw-door .env-flora .dot{fill:#d6b475}
+.gw-door .d-fl{left:-14%;transform:rotate(-90deg)}
+.gw-door .d-fr{right:-14%;transform:rotate(180deg)}
+.gw-nm{position:absolute;left:0;right:0;top:30%;text-align:center;transition:opacity .4s}
+.gw-nm small{display:block;font-family:'Tiro Bangla',serif;font-size:15px;color:#e2c27a}
+.gw-nm b{display:block;font-family:var(--script);font-weight:600;font-size:clamp(26px,2.5vw,36px);line-height:1.1;color:#fff6e4;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.gw-str{position:absolute;left:0;right:0;top:0;height:30%;z-index:3;pointer-events:none}
+.gw-str svg{width:100%;height:100%}
+.gw-s{animation:mSwing 4.5s ease-in-out infinite}
+.gw .seal{top:60%!important;z-index:8}
+.gw-date{z-index:7;bottom:5%!important;transition:opacity .4s}
+/* opening */
+.gate.opening .gw-nm,.gate.opening .gw-date{opacity:0}
+.gate.open .gw-door.l{transform:rotateY(-108deg)}
+.gate.open .gw-door.r{transform:rotateY(108deg)}
+.gate.open .gw-light{transform:scale(3.4)}
+.env-wrap{transition:transform 1.3s cubic-bezier(.6,0,.3,1),opacity .9s ease .45s}
+.gate.zoom .env-wrap{transform:scale(var(--z,4));opacity:0}
+.gate.zoom.env-gate{background-color:transparent;transition-delay:.4s}
+.gate.zoom .env-bg,.gate.zoom .env-alp,.gate.zoom .env-flora.c-tl,.gate.zoom .env-flora.c-br,.gate.zoom .env-petals{opacity:0;transition-delay:.4s}
+@media (max-width:860px){
+  .env-scene{grid-template-areas:"e e"}
+  .gw{grid-area:e;height:min(420px,50vh);justify-self:center}
+  .gw-nm b{font-size:24px}.gw-nm small{font-size:13px}
+}
+@media (prefers-reduced-motion: reduce){.gw-s{animation:none}}
 
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
@@ -1232,18 +1276,15 @@ body.modal-open{overflow:hidden}
     </div>
     <div class="env-scene">
       <figure class="env-fig g" id="envG" aria-hidden="true"></figure>
-      <div class="env" id="env">
-        <div class="env-back"></div>
-        <div class="ef ef-l"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0L50 50L0 100" vector-effect="non-scaling-stroke"/></svg></div>
-        <div class="ef ef-r"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M100 0L50 50L100 100" vector-effect="non-scaling-stroke"/></svg></div>
-        <div class="ef ef-b"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100L50 50L100 100" vector-effect="non-scaling-stroke"/></svg></div>
-        <div class="env-deco">
-          <svg class="env-flora f-bl" viewBox="0 0 330 330" aria-hidden="true"></svg>
-          <svg class="env-flora f-br" viewBox="0 0 330 330" aria-hidden="true"></svg>
-          <div class="env-names" id="envNames"></div>
-          <div class="env-date" id="envDate"></div>
+      <div class="gw" id="gw">
+        <div class="gw-frame" aria-hidden="true"></div>
+        <div class="gw-in">
+          <div class="gw-light" aria-hidden="true"></div>
+          <div class="gw-door l"><svg class="env-flora d-fl" viewBox="0 0 330 330" aria-hidden="true"></svg><div class="gw-nm"><small>বর</small><b id="gwG"></b></div></div>
+          <div class="gw-door r"><svg class="env-flora d-fr" viewBox="0 0 330 330" aria-hidden="true"></svg><div class="gw-nm"><small>কনে</small><b id="gwB"></b></div></div>
+          <div class="gw-str" id="gwStr" aria-hidden="true"></div>
         </div>
-        <div class="env-flap"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0L50 100L100 0" vector-effect="non-scaling-stroke"/><path class="in" d="M7 0L50 86L93 0" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="env-date gw-date" id="envDate"></div>
         <button class="seal" id="seal" aria-label="Open the invitation"><svg class="seal-ganesh" aria-hidden="true"><use href="#ganesh"/></svg></button>
       </div>
       <figure class="env-fig b" id="envB" aria-hidden="true"></figure>
@@ -1997,7 +2038,12 @@ $('#navMono').innerHTML = (() => { let petals = '';
   </svg>`; })();
 (() => { const e = EV.find(x => x.key === 'wedding') || EV[0], [d, m, y] = e.dateShort.split('.');
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
-  $('#envNames').innerHTML = `${esc(W.groom)}<i>weds</i>${esc(W.bride)}`;
+  $('#gwG').textContent = W.groom; $('#gwB').textContent = W.bride;
+  (() => { const h = $('#gwStr'); if (!h) return; let st = '';
+    [[6,24],[16,40],[27,30],[38,46],[50,36],[62,46],[73,30],[84,40],[94,24]].forEach(([x, len], i) => {
+      let bd = ''; for (let y = 2, j = 0; y < len; y += 3.2, j++) bd += `<circle cx="${x}" cy="${y.toFixed(1)}" r="${j % 2 ? 1.3 : 1.55}" fill="${j % 2 ? '#f59e0b' : '#f7c948'}"/>`;
+      st += `<g class="gw-s" style="transform-origin:${x}px 0;animation-delay:${(-i * .6).toFixed(1)}s"><path d="M${x} 0V${len}" stroke="#c9a04c" stroke-width=".3"/>${bd}<path d="M${x} ${len + .6}l-.8 2.6M${x} ${len + .6}l.8 2.6" stroke="#e34b5f" stroke-width=".55"/></g>`; });
+    h.innerHTML = `<svg viewBox="0 0 100 60" preserveAspectRatio="xMidYMin slice"><path d="M0 1.2Q50 7 100 1.2" stroke="#4c7a2f" stroke-width="1.6" fill="none"/>${st}</svg>`; })();
   $('#envDate').innerHTML = `<span>${esc(e.day)}</span><i></i><b>${esc(d)} ${esc(new Date(e.start).toLocaleString('en-GB',{month:'long',timeZone:'Asia/Kolkata'}))} ${esc(y)}</b>`;
   const fig = L => `<svg viewBox="${L ? '82 118 136 356' : '52 118 186 356'}" preserveAspectRatio="xMidYMax meet"><defs><linearGradient id="eP${L ? 'l' : 'r'}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0dfb4"/><stop offset=".5" stop-color="#c99b52"/><stop offset="1" stop-color="#7a5520"/></linearGradient></defs>${figure(L).replace(/url\(#pd-[lr]\)/g, `url(#eP${L ? 'l' : 'r'})`)}</svg>`;
   $('#envG').innerHTML = fig(true); $('#envB').innerHTML = fig(false);
@@ -2262,17 +2308,16 @@ function openGate(){
   gate.classList.add('opening');
   const r = $('#seal').getBoundingClientRect();
   burst(r.left + r.width/2, r.top + r.height/2, {n:40, spread:260, size:[8,18], shapes:['petal','spark','petal','dot'], gravity:120, dur:1800});
-  const env = $('#env');
-  if (env){
-    // the envelope frame itself grows to exactly fill the screen (no scaling, so lines stay crisp)
-    const r = env.getBoundingClientRect(), ph = document.createElement('div');
-    ph.style.cssText = `width:${r.width}px;height:${r.height}px;align-self:center`; env.parentNode.insertBefore(ph, env);
-    Object.assign(env.style, {position:'fixed', left:r.left + 'px', top:r.top + 'px', width:r.width + 'px', height:r.height + 'px', margin:'0', aspectRatio:'auto', zIndex:'5'});
-    env.getBoundingClientRect();
-    setTimeout(() => { gate.classList.add('zoom'); const G = gate.getBoundingClientRect(); Object.assign(env.style, {left:'0px', top:'0px', width:G.width + 'px', height:G.height + 'px'}); }, 320);
-    setTimeout(() => gate.classList.add('open'), 1400);
-    setTimeout(() => document.body.classList.add('started'), 1700);
-    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2800);
+  const gw = $('#gw');
+  if (gw){
+    // doors swing open, warm light pours out, then we glide through the gateway into the site
+    const wrap = $('.env-wrap'), wr = wrap.getBoundingClientRect(), r = gw.getBoundingClientRect();
+    wrap.style.transformOrigin = `${(r.left + r.width / 2 - wr.left).toFixed(0)}px ${(r.top + r.height * .55 - wr.top).toFixed(0)}px`;
+    wrap.style.setProperty('--z', (Math.max(innerWidth / r.width, innerHeight / r.height) * 1.6).toFixed(2));
+    setTimeout(() => gate.classList.add('open'), 350);
+    setTimeout(() => gate.classList.add('zoom'), 1350);
+    setTimeout(() => document.body.classList.add('started'), 1800);
+    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2700);
     return;
   }
   setTimeout(() => gate.classList.add('open'), 550);
