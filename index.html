@@ -670,6 +670,85 @@ body.locked .nav{opacity:0;transform:translateY(-100%)}
 }
 @media (prefers-reduced-motion: reduce){.gw-s{animation:none}}
 
+
+/* ===== GATE v5 — full-screen palace doors ===== */
+.gate.fg-gate{display:block;perspective:2400px;overflow:hidden;background:#2a040c}
+.fg-light{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 55%,#fffaf0 0%,#ffe2a6 28%,#f0ad5f 58%,#a3442f 100%);opacity:.9}
+.fg-door{position:absolute;top:0;bottom:0;width:50.2%;overflow:hidden;transition:transform 1.8s cubic-bezier(.62,0,.2,1);
+  background:
+    radial-gradient(circle,rgba(214,180,117,.5) 0 1.6px,transparent 2.2px) 0 0/30px 30px,
+    linear-gradient(90deg,#3a0610,#5a0c1b 45%,#6e1428)}
+.fg-door.l{left:0;transform-origin:0 50%;box-shadow:inset -3px 0 0 #d6b475,inset -10px 0 24px rgba(0,0,0,.35)}
+.fg-door.r{right:0;transform-origin:100% 50%;background:
+    radial-gradient(circle,rgba(214,180,117,.5) 0 1.6px,transparent 2.2px) 0 0/30px 30px,
+    linear-gradient(270deg,#3a0610,#5a0c1b 45%,#6e1428);box-shadow:inset 3px 0 0 #d6b475,inset 10px 0 24px rgba(0,0,0,.35)}
+.fg-door::after{content:"";position:absolute;top:0;bottom:0;width:26px;
+  background:radial-gradient(circle,#5e0d1b 0 2.4px,transparent 3px) 50% 0/26px 26px,linear-gradient(90deg,#8a5f22,#f3dc9c 50%,#8a5f22)}
+.fg-door.l::after{left:0}.fg-door.r::after{right:0}
+.fg-panel{position:absolute;top:120px;bottom:34px;border:1.5px solid rgba(226,194,122,.85)}
+.fg-panel::before{content:"";position:absolute;inset:9px;border:1px dashed rgba(226,194,122,.5);border-radius:inherit}
+.fg-door.l .fg-panel{left:58px;right:-2px;border-right:0;border-top-left-radius:100% 30%}
+.fg-door.r .fg-panel{right:58px;left:-2px;border-left:0;border-top-right-radius:100% 30%}
+.fg-door.l .fg-panel::before{right:-2px;border-right:0}.fg-door.r .fg-panel::before{left:-2px;border-left:0}
+.fg-door .env-flora{position:absolute;width:min(300px,30vw);stroke:#d6b475;opacity:.7}
+.fg-door .env-flora .dot{fill:#d6b475}
+.fg-door.l .fl-t{left:30px;top:96px}.fg-door.l .fl-b{left:30px;bottom:14px;transform:rotate(-90deg)}
+.fg-door.r .fl-t{right:30px;top:96px;transform:rotate(90deg)}.fg-door.r .fl-b{right:30px;bottom:14px;transform:rotate(180deg)}
+.fg-nm{position:absolute;bottom:calc(40px + min(480px,52vh) + 4px);left:40%;translate:-50% 0;text-align:center;transition:opacity .4s}
+.fg-door.r .fg-nm{left:60%}
+.fg-nm small{display:block;font-family:'Tiro Bangla',serif;font-size:18px;color:#e2c27a}
+.fg-nm b{display:block;font-family:var(--script);font-weight:600;font-size:clamp(34px,3.6vw,54px);line-height:1.1;color:#fff6e4;text-shadow:0 3px 12px rgba(0,0,0,.4)}
+.fg-fig{position:absolute;bottom:40px;left:40%;translate:-50% 0;height:min(480px,52vh);margin:0}
+.fg-door.r .fg-fig{left:60%}
+.fg-fig svg{height:100%;width:auto;overflow:visible}
+.fg-fig .mascot{filter:drop-shadow(0 12px 16px rgba(0,0,0,.5))}
+.fg-fig .varmala{animation:mala 3.6s ease-in-out infinite}
+.fg-toran{position:absolute;left:0;right:0;top:0;height:96px;z-index:4;pointer-events:none;transition:opacity .5s}
+.fg-toran svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 4px rgba(0,0,0,.3))}
+.fg-gate .env-petals{z-index:5}
+.fg-ui{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:84px 16px 26px;pointer-events:none;transition:opacity .45s}
+.fg-ui .seal,.fg-ui .gate-hint{pointer-events:auto}
+.fg-top{position:relative;text-align:center}
+.fg-top::before,.fg-mid::before{content:"";position:absolute;left:50%;top:50%;width:150%;height:130%;translate:-50% -50%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse,rgba(52,5,14,.78) 0%,rgba(52,5,14,.45) 45%,rgba(52,5,14,0) 72%)}
+.fg-mid{position:relative}
+.fg-gate .gan-halo.gh-gate{width:clamp(110px,10vw,140px);height:clamp(110px,10vw,140px);margin:0 auto}
+.fg-gate .gan-halo::before{background:radial-gradient(circle,rgba(255,214,140,.55) 0%,rgba(255,214,140,.18) 45%,rgba(255,214,140,0) 70%)}
+.fg-gate .gan-mand .disc{fill:rgba(255,246,226,.92)}
+.fg-sh{font-family:'Tiro Bangla',serif;font-size:14px;color:#e2c27a;margin-top:4px;letter-spacing:.04em}
+.fg-gate .gate-bn{font-size:clamp(36px,4.4vw,54px);line-height:1.2;padding:.12em .2em;margin-top:-.08em;filter:drop-shadow(0 2px 8px rgba(0,0,0,.45))}
+.fg-mid{display:flex;flex-direction:column;align-items:center}
+.fg-gate .seal{position:relative;width:clamp(96px,9vw,124px);height:clamp(96px,9vw,124px);border:0;border-radius:47% 53% 50% 50% / 52% 48% 52% 48%;
+  background:radial-gradient(circle at 36% 30%,#d8455a,#a3142a 45%,#6e0716 85%);
+  box-shadow:inset 0 0 0 5px rgba(110,7,22,.55),inset 0 0 0 7px rgba(255,190,190,.18),inset -6px -8px 14px rgba(0,0,0,.25),0 10px 24px rgba(0,0,0,.5);cursor:pointer;transition:transform .45s var(--ease),opacity .45s}
+.fg-gate .seal::before{inset:12px;border:1px dashed rgba(255,215,190,.45)}
+.fg-gate .seal::after{inset:-9px;border-color:#d6b475}
+.fg-gate .seal:hover{transform:scale(1.06) rotate(-4deg)}
+.fg-gate .seal-ganesh{width:52%;height:56%;margin:0;color:#f3dc9c}
+.fg-gate .gate-hint{margin-top:22px;font-family:var(--script);font-size:26px;color:#f6e7c1;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.fg-gate .gate-hint .bn{font-size:14px;color:#e2c27a}
+.fg-date{position:relative!important;left:auto!important;bottom:auto!important;translate:none!important}
+/* opening */
+.gate.fg-gate.opening .fg-ui{opacity:0}
+.gate.fg-gate.opening .fg-nm{opacity:0}
+.gate.fg-gate.opening .seal{transform:scale(1.35) rotate(12deg);opacity:0}
+.gate.fg-gate.open .fg-door.l{transform:rotateY(-100deg)}
+.gate.fg-gate.open .fg-door.r{transform:rotateY(100deg)}
+.gate.fg-gate.open .fg-toran{opacity:0}
+.fg-light{transition:transform 1.6s ease .3s,opacity .8s}
+.gate.fg-gate.open .fg-light{transform:scale(1.6)}
+@media (max-width:860px){
+  .fg-fig{display:none}
+  .fg-door.l .fg-panel{left:34px}.fg-door.r .fg-panel{right:34px}
+  .fg-door::after{width:16px;background-size:16px 16px,auto}
+  .fg-nm{top:auto;bottom:13%;left:auto;translate:none}
+  .fg-door.l .fg-nm{right:16px;text-align:right}.fg-door.r .fg-nm{left:16px;text-align:left}
+  .fg-nm b{font-size:30px}.fg-nm small{font-size:14px}
+  .fg-toran{height:70px}
+  .fg-ui{padding:66px 12px 22px}
+  .fg-gate .gate-hint{font-size:22px;margin-top:16px}
+  .fg-door .env-flora{width:52vw}
+}
+
 /* photo placeholders */
 .ph{background-size:cover;background-position:center}
 .ph-empty{
@@ -1262,34 +1341,35 @@ body.modal-open{overflow:hidden}
 </svg>
 
 <!-- ======================= GATE ======================= -->
-<div class="gate env-gate" id="gate" role="dialog" aria-label="Invitation — tap the seal to open">
-  <div class="env-bg" aria-hidden="true"></div>
-  <svg class="env-alp" viewBox="0 0 400 400" data-alpana="6" aria-hidden="true"></svg>
-  <svg class="env-flora c-tl" viewBox="0 0 330 330" aria-hidden="true"></svg>
-  <svg class="env-flora c-br" viewBox="0 0 330 330" aria-hidden="true"></svg>
+<div class="gate fg-gate" id="gate" role="dialog" aria-label="Invitation — tap the seal to open">
+  <div class="fg-light" aria-hidden="true"></div>
+  <div class="fg-door l">
+    <div class="fg-panel"></div>
+    <svg class="env-flora fl-t" viewBox="0 0 330 330" aria-hidden="true"></svg>
+    <svg class="env-flora fl-b" viewBox="0 0 330 330" aria-hidden="true"></svg>
+    <div class="fg-nm"><small>বর</small><b id="gwG"></b></div>
+    <figure class="fg-fig" id="envG" aria-hidden="true"></figure>
+  </div>
+  <div class="fg-door r">
+    <div class="fg-panel"></div>
+    <svg class="env-flora fl-t" viewBox="0 0 330 330" aria-hidden="true"></svg>
+    <svg class="env-flora fl-b" viewBox="0 0 330 330" aria-hidden="true"></svg>
+    <div class="fg-nm"><small>কনে</small><b id="gwB"></b></div>
+    <figure class="fg-fig" id="envB" aria-hidden="true"></figure>
+  </div>
+  <div class="fg-toran" id="fgToran" aria-hidden="true"></div>
   <div class="env-petals" id="envPetals" aria-hidden="true"></div>
-  <div class="env-wrap">
-    <div class="env-top">
+  <div class="fg-ui">
+    <div class="fg-top">
       <div class="gan-halo gh-gate" aria-hidden="true"><svg class="v5-mand gan-mand" viewBox="-62 -62 124 124" data-mand></svg><img class="gan-img" src="ganesha.png" alt="" decoding="async"></div>
-      <div class="env-sh">॥ শ্রী শ্রী গণেশায় নমঃ ॥</div>
+      <div class="fg-sh">॥ শ্রী শ্রী গণেশায় নমঃ ॥</div>
       <div class="gate-bn">শুভ বিবাহ</div>
     </div>
-    <div class="env-scene">
-      <figure class="env-fig g" id="envG" aria-hidden="true"></figure>
-      <div class="gw" id="gw">
-        <div class="gw-frame" aria-hidden="true"></div>
-        <div class="gw-in">
-          <div class="gw-light" aria-hidden="true"></div>
-          <div class="gw-door l"><svg class="env-flora d-fl" viewBox="0 0 330 330" aria-hidden="true"></svg><div class="gw-nm"><small>বর</small><b id="gwG"></b></div></div>
-          <div class="gw-door r"><svg class="env-flora d-fr" viewBox="0 0 330 330" aria-hidden="true"></svg><div class="gw-nm"><small>কনে</small><b id="gwB"></b></div></div>
-          <div class="gw-str" id="gwStr" aria-hidden="true"></div>
-        </div>
-        <div class="env-date gw-date" id="envDate"></div>
-        <button class="seal" id="seal" aria-label="Open the invitation"><svg class="seal-ganesh" aria-hidden="true"><use href="#ganesh"/></svg></button>
-      </div>
-      <figure class="env-fig b" id="envB" aria-hidden="true"></figure>
+    <div class="fg-mid">
+      <button class="seal" id="seal" aria-label="Open the invitation"><svg class="seal-ganesh" aria-hidden="true"><use href="#ganesh"/></svg></button>
+      <div class="gate-hint"><span class="bn">খুলতে সিলে স্পর্শ করুন</span>Tap the seal to open</div>
     </div>
-    <div class="gate-hint"><span class="bn">খুলতে সিলে স্পর্শ করুন</span>Tap the seal to open</div>
+    <div class="env-date fg-date" id="envDate"></div>
   </div>
 </div>
 
@@ -2039,6 +2119,16 @@ $('#navMono').innerHTML = (() => { let petals = '';
 (() => { const e = EV.find(x => x.key === 'wedding') || EV[0], [d, m, y] = e.dateShort.split('.');
   const bnDay = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'}[e.day] || '';
   $('#gwG').textContent = W.groom; $('#gwB').textContent = W.bride;
+  (() => { const host = $('#fgToran'); if (!host) return;
+    let o = '', W0 = 1800, n = 9, sw = W0 / n;
+    for (let i = 0; i < n; i++){ const x0 = i * sw, x1 = x0 + sw, sag = 46 + (i % 2) * 8;
+      for (let t = 0, j = 0; t <= 1.0001; t += 1 / 22, j++){ const x = x0 + sw * t, y = 8 + 4 * sag * t * (1 - t);
+        o += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${j % 2 ? 6.2 : 7.4}" fill="${j % 2 ? '#f59e0b' : '#f7c948'}"/>`; }
+      o += `<path d="M${x1} 8V70" stroke="#c9a04c" stroke-width="1"/>`;
+      for (let y = 18, k = 0; y < 72; y += 11, k++) o += `<circle cx="${x1}" cy="${y}" r="${k % 2 ? 4.6 : 5.4}" fill="${k % 2 ? '#e8590c' : '#f7c948'}"/>`;
+      o += `<path d="M${x1} 76l-4 12M${x1} 76l4 12" stroke="#c8102e" stroke-width="2.2" stroke-linecap="round"/>`;
+      o += `<path d="M${x1 - 3} 6c-16 4-26 16-28 30c12-4 24-14 28-30zM${x1 + 3} 6c16 4 26 16 28 30c-12-4-24-14-28-30z" fill="#4c7a2f"/>`; }
+    host.innerHTML = `<svg viewBox="0 0 ${W0} 100" preserveAspectRatio="xMidYMin slice"><path d="M0 7H${W0}" stroke="#c9a04c" stroke-width="2"/>${o}</svg>`; })();
   (() => { const h = $('#gwStr'); if (!h) return; let st = '';
     [[6,24],[16,40],[27,30],[38,46],[50,36],[62,46],[73,30],[84,40],[94,24]].forEach(([x, len], i) => {
       let bd = ''; for (let y = 2, j = 0; y < len; y += 3.2, j++) bd += `<circle cx="${x}" cy="${y.toFixed(1)}" r="${j % 2 ? 1.3 : 1.55}" fill="${j % 2 ? '#f59e0b' : '#f7c948'}"/>`;
@@ -2308,16 +2398,10 @@ function openGate(){
   gate.classList.add('opening');
   const r = $('#seal').getBoundingClientRect();
   burst(r.left + r.width/2, r.top + r.height/2, {n:40, spread:260, size:[8,18], shapes:['petal','spark','petal','dot'], gravity:120, dur:1800});
-  const gw = $('#gw');
-  if (gw){
-    // doors swing open, warm light pours out, then we glide through the gateway into the site
-    const wrap = $('.env-wrap'), wr = wrap.getBoundingClientRect(), r = gw.getBoundingClientRect();
-    wrap.style.transformOrigin = `${(r.left + r.width / 2 - wr.left).toFixed(0)}px ${(r.top + r.height * .55 - wr.top).toFixed(0)}px`;
-    wrap.style.setProperty('--z', (Math.max(innerWidth / r.width, innerHeight / r.height) * 1.6).toFixed(2));
-    setTimeout(() => gate.classList.add('open'), 350);
-    setTimeout(() => gate.classList.add('zoom'), 1350);
-    setTimeout(() => document.body.classList.add('started'), 1800);
-    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2700);
+  if (gate.classList.contains('fg-gate')){
+    setTimeout(() => gate.classList.add('open'), 380);
+    setTimeout(() => document.body.classList.add('started'), 1300);
+    setTimeout(() => { gate.classList.add('gone'); document.body.classList.remove('locked'); onScroll(); }, 2400);
     return;
   }
   setTimeout(() => gate.classList.add('open'), 550);
